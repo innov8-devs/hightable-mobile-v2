@@ -29,11 +29,11 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
   Future<void> _navigate() async {
     final setup = ref.read(applicationController);
 
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 2));
     if (setup.isLogged) {
       await setup.goHome(context);
     } else {
-      // await Navigator.popAndPushNamed(context, OnboardingScreen.routeName);
+      await Navigator.popAndPushNamed(context, OnboardingScreen.routeName);
     }
   }
 
