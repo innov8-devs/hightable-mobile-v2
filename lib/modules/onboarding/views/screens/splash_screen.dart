@@ -6,6 +6,7 @@ import 'package:hightable_mobile_v2/animations/fade_in_animation.dart';
 import 'package:hightable_mobile_v2/animations/slide_in_right.dart';
 import 'package:hightable_mobile_v2/animations/slide_left_animation.dart';
 import 'package:hightable_mobile_v2/utils/assets.dart';
+import 'package:hightable_mobile_v2/utils/custom_navigators.dart';
 import 'package:hightable_mobile_v2/utils/helpers.dart';
 
 import '../../../../core/application/domain/providers/application.dart';
@@ -33,7 +34,7 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
     if (setup.isLogged) {
       await setup.goHome(context);
     } else {
-      await Navigator.popAndPushNamed(context, OnboardingScreen.routeName);
+      await AppNavigators.routeReplacefade(context, const OnboardingScreen());
     }
   }
 

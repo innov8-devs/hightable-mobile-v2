@@ -2,6 +2,8 @@ import 'constants.dart';
 
 class ImageAssets {
   static const String logo = '${AppConstants.imagePath}logo.png';
+  static const String onb1 = '${AppConstants.imagePath}onb1.png';
+  static const String nextellipse = "${AppConstants.imagePath}nextellipse.png";
 }
 
 class SvgAssets {
