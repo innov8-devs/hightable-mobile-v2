@@ -10,7 +10,6 @@ class BottomUpAnimaitons extends StatelessWidget {
     required this.delay,
     required this.child,
     this.curve = Curves.easeOut,
-    required Animation<double> opacity,
   }) : super(key: key);
   final double delay;
   final Widget child;

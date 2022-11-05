@@ -32,6 +32,9 @@ dependencies:
   supercharged: ^2.1.1
   simple_animations: ^4.0.1
 
+  #UI
+  glassmorphism_ui: ^0.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

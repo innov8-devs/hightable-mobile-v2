@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:hightable_mobile_v2/animations/fade_in_animation.dart';
 import 'package:hightable_mobile_v2/animations/slide_in_right.dart';
 import 'package:hightable_mobile_v2/animations/slide_left_animation.dart';
+import 'package:hightable_mobile_v2/modules/authentication/views/screens/signup_screen.dart';
 import 'package:hightable_mobile_v2/utils/assets.dart';
+import 'package:hightable_mobile_v2/utils/custom_navigators.dart';
 import 'package:hightable_mobile_v2/utils/helpers.dart';
 import 'package:hightable_mobile_v2/utils/spacer.dart';
 import 'package:hightable_mobile_v2/utils/text_style_util.dart';
@@ -27,7 +29,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         _index++;
         Helpers.logc("current onboarding index is $_index");
       });
-    } else {}
+    } else {
+      AppNavigators.routeReplacefade(context, const SignUpScreen());
+    }
   }
 
   void _skip() {}
