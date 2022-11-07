@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 import 'package:hightable_mobile_v2/animations/bottom_up_animations.dart';
 import 'package:hightable_mobile_v2/utils/spacer.dart';
+import 'package:hightable_mobile_v2/utils/text_style_util.dart';
 import 'package:hightable_mobile_v2/utils/ui/app_colors.dart';
 import 'package:hightable_mobile_v2/utils/ui/widgets/background.dart';
 
@@ -22,7 +23,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           const Background(),
           Positioned(
               bottom: 0,
-              left: -1,
+              left: -1.5,
               child: BottomUpAnimaitons(
                 delay: 1,
                 child: GlassContainer(
@@ -43,6 +44,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(90),
                       topRight: Radius.circular(90)),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Column(
+                        children: [
+                          Text("Register",
+                              style: semiBoldStyle(
+                                25,
+                                AppColors.black02,
+                              )),
+                          Text("Create your account",
+                              style: mediumStyle(
+                                16,
+                                AppColors.black02,
+                              )),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ))
         ]),
