@@ -60,7 +60,7 @@ class CustomTextField extends StatelessWidget {
           if (title != null)
             Text(
               title!,
-              style: mediumStyle(12, AppColors.grey03op),
+              style: mediumStyle(19, AppColors.grey04),
             )
           else
             const SizedBox.shrink(),
@@ -77,11 +77,19 @@ class CustomTextField extends StatelessWidget {
             obscureText: hide,
             style: style,
             decoration: InputDecoration(
+              fillColor: AppColors.white,
+              filled: true,
+              focusedBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
+                  color: AppColors.prim1,
+                ),
+                borderRadius: BorderRadius.circular(12),
+              ),
               border: OutlineInputBorder(
                 borderSide: const BorderSide(
                   color: AppColors.grey03,
                 ),
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(12),
               ),
               contentPadding: EdgeInsets.symmetric(
                   vertical: 20, horizontal: prefixIcon == null ? 20 : 8),

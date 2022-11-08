@@ -13,4 +13,8 @@ class SvgAssets {
   static const String ellipse1 = "${AppConstants.svgPath}ellipse1.svg";
   static const String ellipse2 = "${AppConstants.svgPath}ellipse2.svg";
   static const String ellipse3 = "${AppConstants.svgPath}ellipse3.svg";
+
+  static const String google = "${AppConstants.svgPath}google.svg";
+  static const String twitter = "${AppConstants.svgPath}twitter.svg";
+  static const String facebook = "${AppConstants.svgPath}facebook.svg";
 }
