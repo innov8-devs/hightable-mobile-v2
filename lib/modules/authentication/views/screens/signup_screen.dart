@@ -10,6 +10,9 @@ import 'package:hightable_mobile_v2/utils/ui/widgets/background.dart';
 import 'package:hightable_mobile_v2/utils/ui/widgets/button.dart';
 import 'package:hightable_mobile_v2/utils/ui/widgets/text_field.dart';
 
+import '../../../../utils/custom_navigators.dart';
+import 'login_screen.dart';
+
 class SignUpScreen extends StatefulWidget {
   static const String routeName = "/sign_up";
   const SignUpScreen({super.key});
@@ -181,7 +184,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 style: mediumStyle(15, AppColors.grey04),
                               ),
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  Helpers.logc(
+                                      "Routing to: ${LoginScreen.routeName}");
+                                  AppNavigators.routeReplacefade(
+                                      context, const LoginScreen());
+                                },
                                 child: Text(
                                   "Login now",
                                   style: mediumStyle(
@@ -193,6 +201,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                             ],
                           ),
+                          const YMargin(20)
                         ],
                       ),
                     ),

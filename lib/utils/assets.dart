@@ -7,6 +7,7 @@ class ImageAssets {
   static const String onb3 = '${AppConstants.imagePath}onb3.png';
   static const String onb4 = '${AppConstants.imagePath}onb4.png';
   static const String nextellipse = "${AppConstants.imagePath}nextellipse.png";
+  static const String check = "${AppConstants.imagePath}check.png";
 }
 
 class SvgAssets {

@@ -32,8 +32,8 @@ class ShakerState extends State<Shaker> with SingleTickerProviderStateMixin {
 
   math.Vector3 _shake() {
     final progress = animationController.value;
-    final offset = sin(progress * pi * 10.0);
-    return math.Vector3(offset * 25, 0, 0);
+    final offset = sin(progress * pi * 11.0);
+    return math.Vector3(offset * 6, 0, 0);
   }
 
   void shake() {
