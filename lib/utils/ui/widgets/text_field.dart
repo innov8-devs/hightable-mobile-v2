@@ -24,6 +24,9 @@ class CustomTextField extends StatelessWidget {
   TextStyle? hintStyle;
   Color? color;
   String? title;
+  TextAlign? textAlign;
+  FocusNode? focusNode;
+  int maxLength;
 
   CustomTextField({
     Key? key,
@@ -45,6 +48,9 @@ class CustomTextField extends StatelessWidget {
     this.hintStyle,
     this.color,
     this.suffixIcon,
+    this.textAlign = TextAlign.start,
+    this.focusNode,
+    this.maxLength = 1000,
   }) : super(
           key: key,
         );
@@ -76,7 +82,11 @@ class CustomTextField extends StatelessWidget {
             onChanged: onChanged,
             obscureText: hide,
             style: style,
+            focusNode: focusNode,
+            maxLength: maxLength,
+            textAlign: textAlign!,
             decoration: InputDecoration(
+              counterText: "",
               fillColor: AppColors.white,
               filled: true,
               focusedBorder: OutlineInputBorder(

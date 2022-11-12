@@ -10,6 +10,7 @@ import 'package:hightable_mobile_v2/utils/helpers.dart';
 import 'package:hightable_mobile_v2/utils/spacer.dart';
 import 'package:hightable_mobile_v2/utils/text_style_util.dart';
 import 'package:hightable_mobile_v2/utils/ui/app_colors.dart';
+import 'package:hightable_mobile_v2/utils/ui/helpers/otppage.dart';
 import 'package:hightable_mobile_v2/utils/ui/helpers/successpage.dart';
 import 'package:hightable_mobile_v2/utils/ui/widgets/background.dart';
 import 'package:hightable_mobile_v2/utils/ui/widgets/button.dart';
@@ -111,13 +112,7 @@ class _SignUpScreenState extends State<ResetEmail> {
                                           if (_formKey.currentState!
                                               .validate()) {
                                             AppNavigators.routeReplacefade(
-                                                context,
-                                                const SucessPage(
-                                                  btntxt: 'Login',
-                                                  title:
-                                                      "Password Reset Successful",
-                                                  route: SignUpScreen(),
-                                                ));
+                                                context, const OtpPage());
                                           }
                                         }),
                                     const YMargin(150),
