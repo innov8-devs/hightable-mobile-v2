@@ -1,15 +1,21 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hightable_mobile_v2/modules/authentication/domain/models/token.dart';
 
+// import '../../../../modules/authentication/domain/entities/user.dart';
+import '../../../../modules/authentication/domain/models/usermodel.dart';
 import '../../../../modules/onboarding/views/screens/onboarding.dart';
 import '../../../../utils/helpers.dart';
+import '../../../config/DI/di.dart';
+import '../../repositories/user_repository.dart';
 
 ChangeNotifierProvider<Application> applicationController =
     ChangeNotifierProvider((ref) => Application(ref: ref));
 
 class Application extends ChangeNotifier {
   Application({this.ref});
+  Token _data = Token();
   String _token = "";
   Ref? ref;
   bool _isLogged = false;
@@ -30,5 +36,23 @@ class Application extends ChangeNotifier {
     );
 
     Helpers.logc("raw ysr null");
+  }
+
+  Future<void> onLogin(Token data, BuildContext context,
+      {bool shouldSetup = true}) async {
+    _data = data;
+    if (shouldSetup) {
+      await setup(context);
+    }
+    return;
+  }
+
+  Future<void> setup(BuildContext context) async {
+    await locator.get<UserRepository>().getUser();
+
+    locator.get<Application>()._data = _data;
+    try {} catch (e) {
+      Helpers.log("here $e");
+    }
   }
 }

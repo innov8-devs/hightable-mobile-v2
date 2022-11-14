@@ -14,6 +14,7 @@ import 'package:hightable_mobile_v2/utils/ui/widgets/background.dart';
 import 'package:hightable_mobile_v2/utils/ui/widgets/button.dart';
 import 'package:hightable_mobile_v2/utils/ui/widgets/text_field.dart';
 
+import '../../domain/params/login_params.dart';
 import '../../domain/providers/signin_provider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -28,11 +29,17 @@ class _SignUpScreenState extends State<LoginScreen> {
   final email = TextEditingController();
   final password = TextEditingController();
   final _shakeKey = GlobalKey<ShakerState>();
+  final _emailShakeKey = GlobalKey<ShakerState>();
   final _formKey = GlobalKey<FormState>();
+  late LoginParams _loginParams;
 
   @override
   void initState() {
     Helpers.logc("currentPage: ${LoginScreen.routeName}");
+    _loginParams = LoginParams(
+      email: email.text,
+      password: password.text,
+    );
     super.initState();
   }
 
@@ -90,9 +97,20 @@ class _SignUpScreenState extends State<LoginScreen> {
                                           AppColors.black02,
                                         )),
                                     const YMargin(30),
-                                    CustomTextField(
-                                      title: "Email or Phone Number",
-                                      controller: email,
+                                    Shaker(
+                                      key: _emailShakeKey,
+                                      child: CustomTextField(
+                                        title: "Email or Phone Number",
+                                        controller: email,
+                                        validator: (s) {
+                                          if (s!.isEmpty) {
+                                            _emailShakeKey.currentState!
+                                                .shake();
+                                            return "Enter your email address";
+                                          }
+                                          return null;
+                                        },
+                                      ),
                                     ),
                                     const YMargin(10),
                                     Shaker(
@@ -192,11 +210,8 @@ class _SignUpScreenState extends State<LoginScreen> {
                                       function: () {
                                         if (_formKey.currentState!.validate()) {
                                           loginController
-                                              .login(
-                                            context,
-                                            email: email.text,
-                                            password: password.text,
-                                          )
+                                              .login(context,
+                                                  params: _loginParams)
                                               .then((value) {
                                             if (!value) {
                                               _shakeKey.currentState!.shake();

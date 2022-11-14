@@ -22,7 +22,11 @@ dependencies:
   get_it: ^7.2.0
 
   #Network and API
-  cached_network_image: ^3.2.0 
+  cached_network_image: ^3.2.0
+  graphql_flutter: ^5.1.0
+  equatable: ^2.0.3
+  cross_connectivity: ^3.0.5
+  freezed: ^2.0.3+1
 
   # utils
   validators: ^3.0.0
@@ -42,6 +46,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   build_runner: ^2.1.7
   hive_generator: ^1.1.2
+  json_serializable: ^6.5.4
 
   #DB
   hive: ^2.1.0
