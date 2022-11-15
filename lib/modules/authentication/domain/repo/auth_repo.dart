@@ -11,6 +11,7 @@ abstract class AuthRepo {
   Future<GQLResult<Token>> login(LoginParams params);
   Future<GQLResult<User>> verifyCustomer(num params);
   Future<GQLResult<User>> signup(SignupParams params);
+  Future<GQLResult<User>> sendVerification(String params);
   Future<GQLResult<User>> updateCustomerPassword(
     UpdatePasswordParams params,
   );

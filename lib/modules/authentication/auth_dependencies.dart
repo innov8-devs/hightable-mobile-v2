@@ -1,3 +1,5 @@
+import 'package:hightable_mobile_v2/modules/authentication/domain/usecases/sendVerification.dart';
+
 import '../../../core/config/DI/di.dart';
 import 'domain/repo/auth_repo.dart';
 import 'domain/usecases/get_user.dart';
@@ -33,6 +35,11 @@ void registerAutDependencies() {
   );
   locator.registerLazySingleton<VerifyCustomer>(
     () => VerifyCustomer(
+      locator(),
+    ),
+  );
+  locator.registerLazySingleton<sendVerification>(
+    () => sendVerification(
       locator(),
     ),
   );

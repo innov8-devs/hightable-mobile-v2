@@ -82,3 +82,13 @@ String get queryCustomerPasswordReset {
     }
 ''';
 }
+
+String get querysendVerification {
+  return r'''
+    query SendCustomerVerification($email: String!) {
+      sendCustomerVerification (email: $email) {
+        email
+      }
+    }
+''';
+}

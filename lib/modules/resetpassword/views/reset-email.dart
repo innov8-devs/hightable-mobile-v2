@@ -112,7 +112,10 @@ class _SignUpScreenState extends State<ResetEmail> {
                                           if (_formKey.currentState!
                                               .validate()) {
                                             AppNavigators.routeReplacefade(
-                                                context, const OtpPage());
+                                                context,
+                                                OtpPage(
+                                                  email: email.text,
+                                                ));
                                           }
                                         }),
                                     const YMargin(150),

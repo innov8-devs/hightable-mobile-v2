@@ -54,6 +54,18 @@ class AuthDatasourceImpl extends AuthDatasource {
   }
 
   @override
+  Future<User> sendVerification(String params) async {
+    final response = await _algqlClient.gpQuery(
+      queryDocument: querysendVerification,
+      data: {
+        'email': params,
+      },
+    );
+    Helpers.logc(response.data!);
+    return User.fromMap(response.data!['sendCustomerVerification']);
+  }
+
+  @override
   Future<UserEntity> updateCustomerPassword(UpdatePasswordParams params) {
     // TODO: implement updateCustomerPassword
     throw UnimplementedError();

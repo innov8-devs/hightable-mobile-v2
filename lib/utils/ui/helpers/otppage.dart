@@ -19,7 +19,8 @@ import '../../../modules/authentication/domain/providers/signup_provider.dart';
 
 class OtpPage extends StatefulWidget {
   static const String routeName = "/reset_page";
-  const OtpPage({super.key});
+  final String email;
+  const OtpPage({required this.email, super.key});
 
   @override
   State<OtpPage> createState() => _SignUpScreenState();
@@ -227,7 +228,10 @@ class _SignUpScreenState extends State<OtpPage> {
                                   style: mediumStyle(15, AppColors.grey04),
                                 ),
                                 GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    signupController.resendOTP(context,
+                                        params: widget.email);
+                                  },
                                   child: Text(
                                     "Resend code",
                                     style: mediumStyle(

@@ -1,3 +1,5 @@
+import 'package:hightable_mobile_v2/modules/authentication/domain/usecases/sendVerification.dart';
+
 import '../../../../core/al_flutter_core.dart';
 import '../domain/entities/user.dart';
 import '../domain/models/token.dart';
@@ -31,6 +33,10 @@ class AuthRepoImpl extends AuthRepo {
   @override
   Future<GQLResult<User>> signup(SignupParams params) => gqlInterceptor(
         () => _authDatasource.signup(params),
+      );
+  @override
+  Future<GQLResult<User>> sendVerification(String params) => gqlInterceptor(
+        () => _authDatasource.sendVerification(params),
       );
   @override
   Future<GQLResult<User>> updateCustomerPassword(UpdatePasswordParams params) =>
