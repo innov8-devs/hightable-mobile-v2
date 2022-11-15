@@ -4,8 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hightable_mobile_v2/modules/authentication/domain/params/login_params.dart';
 import 'package:hightable_mobile_v2/modules/authentication/domain/params/signup_params.dart';
 import 'package:hightable_mobile_v2/modules/authentication/domain/usecases/signup.dart';
+import 'package:hightable_mobile_v2/modules/authentication/domain/usecases/verify_customer.dart';
 import 'package:hightable_mobile_v2/modules/authentication/repositories/auth_repo_impl.dart';
+import 'package:hightable_mobile_v2/utils/custom_navigators.dart';
 import 'package:hightable_mobile_v2/utils/helpers.dart';
+import 'package:hightable_mobile_v2/utils/ui/helpers/otppage.dart';
 
 import '../../../../core/application/domain/providers/application.dart';
 import '../../../../core/application/repositories/preference_repositories.dart';
@@ -63,6 +66,33 @@ class SignUpProvider extends ChangeNotifier {
 
     response.when(success: (User data) async {
       Helpers.logc(data);
+      AppNavigators.routeReplacefade(context, OtpPage());
+      loading = false;
+    }, failure: (error) {
+      loading = false;
+      final errorMessage = GQLExceptions.getErrorMessage(error);
+      UI.showErrorSnack(
+        navigatorKey.currentState!.context,
+        errorMessage,
+      );
+    });
+    return false;
+  }
+
+  Future<bool> verify(
+    BuildContext context, {
+    required num params,
+    bool routeAfter = true,
+  }) async {
+    loading = true;
+    final VerifyCustomer verify = locator();
+    final response = await verify.call(
+      params,
+    );
+
+    response.when(success: (User data) async {
+      Helpers.logc(data);
+      AppNavigators.routeReplacefade(context, OtpPage());
       loading = false;
     }, failure: (error) {
       loading = false;

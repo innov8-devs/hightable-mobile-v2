@@ -60,9 +60,15 @@ class AuthDatasourceImpl extends AuthDatasource {
   }
 
   @override
-  Future<UserEntity> verifyCustomer(num params) {
-    // TODO: implement verifyCustomer
-    throw UnimplementedError();
+  Future<User> verifyCustomer(num params) async {
+    final response = await _algqlClient.gpQuery(
+      queryDocument: queryVerifyCustomer,
+      data: {
+        'code': params,
+      },
+    );
+    return User.fromMap(
+        response.data!['verifyCustomer'] as Map<String, dynamic>);
   }
 
   // @override
@@ -111,15 +117,4 @@ class AuthDatasourceImpl extends AuthDatasource {
   //       response.data!['updateCustomerPassword'] as Map<String, dynamic>);
   // }
 
-  // @override
-  // Future<User> verifyCustomer(num params) async {
-  //   final response = await _algqlClient.gpQuery(
-  //     queryDocument: queryVerifyCustomer,
-  //     data: {
-  //       'code': params,
-  //     },
-  //   );
-  //   return User.fromMap(
-  //       response.data!['verifyCustomer'] as Map<String, dynamic>);
-  // }
 }

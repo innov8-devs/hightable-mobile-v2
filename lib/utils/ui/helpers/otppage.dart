@@ -15,6 +15,8 @@ import 'package:hightable_mobile_v2/utils/ui/widgets/background.dart';
 import 'package:hightable_mobile_v2/utils/ui/widgets/button.dart';
 import 'package:hightable_mobile_v2/utils/ui/widgets/text_field.dart';
 
+import '../../../modules/authentication/domain/providers/signup_provider.dart';
+
 class OtpPage extends StatefulWidget {
   static const String routeName = "/reset_page";
   const OtpPage({super.key});
@@ -28,6 +30,10 @@ class _SignUpScreenState extends State<OtpPage> {
   final t2 = TextEditingController();
   final t3 = TextEditingController();
   final t4 = TextEditingController();
+  final t5 = TextEditingController();
+  final t6 = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  late num _otp;
 
   @override
   void initState() {
@@ -63,123 +69,181 @@ class _SignUpScreenState extends State<OtpPage> {
                   shadowStrength: 5,
                   border: Border.all(color: AppColors.white, width: 1.5),
                   borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(90),
-                      topRight: Radius.circular(90)),
+                      topLeft: Radius.circular(78),
+                      topRight: Radius.circular(78)),
                   child: SingleChildScrollView(
-                      child: Column(
-                    children: [
-                      const YMargin(30),
-                      Text("Confirm account",
-                          style: mediumStyle(
-                            22,
-                            AppColors.black02,
-                          )),
-                      const YMargin(5),
-                      SizedBox(
-                        width: 200,
-                        child: Text("Enter the verification code sent to you",
-                            textAlign: TextAlign.center,
-                            style: normalStyle(
-                              15,
-                              AppColors.black02,
-                            )),
-                      ),
-                      const YMargin(20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CustomTextField(
-                            height: 90,
-                            width: 70,
-                            controller: t1,
-                            maxLength: 1,
-                            onChanged: (s) {
-                              if (s.length == 1) {
-                                FocusScope.of(context).nextFocus();
-                              }
-                            },
-                            textAlign: TextAlign.center,
-                            style: semiBoldStyle(20, AppColors.black02),
-                          ),
-                          const XMargin(32),
-                          CustomTextField(
-                            height: 90,
-                            width: 70,
-                            controller: t2,
-                            maxLength: 1,
-                            onChanged: (s) {
-                              if (s.length == 1) {
-                                FocusScope.of(context).nextFocus();
-                              } else if (s.isEmpty) {
-                                FocusScope.of(context).previousFocus();
-                              }
-                            },
-                            textAlign: TextAlign.center,
-                            style: semiBoldStyle(20, AppColors.black02),
-                          ),
-                          const XMargin(32),
-                          CustomTextField(
-                            height: 90,
-                            width: 70,
-                            controller: t3,
-                            maxLength: 1,
-                            onChanged: (s) {
-                              if (s.length == 1) {
-                                FocusScope.of(context).nextFocus();
-                              } else if (s.isEmpty) {
-                                FocusScope.of(context).previousFocus();
-                              }
-                            },
-                            textAlign: TextAlign.center,
-                            style: semiBoldStyle(20, AppColors.black02),
-                          ),
-                          const XMargin(32),
-                          CustomTextField(
-                            height: 90,
-                            width: 70,
-                            controller: t4,
-                            maxLength: 1,
-                            onChanged: (s) {
-                              if (s.length == 1) {
-                                FocusScope.of(context).nextFocus();
-                              } else if (s.isEmpty) {
-                                FocusScope.of(context).previousFocus();
-                              }
-                            },
-                            textAlign: TextAlign.center,
-                            style: semiBoldStyle(20, AppColors.black02),
-                          ),
-                        ],
-                      ),
-                      const YMargin(50),
-                      Button(
-                          height: 50,
-                          text: "Verify",
-                          textStyle: mediumStyle(18, AppColors.white),
-                          function: () {}),
-                      const YMargin(50),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Didn't recieve any code? ",
-                            style: mediumStyle(15, AppColors.grey04),
-                          ),
-                          GestureDetector(
-                            onTap: () {},
-                            child: Text(
-                              "Resend code",
-                              style: mediumStyle(
-                                15,
-                                AppColors.prim1,
-                                decoration: TextDecoration.underline,
-                              ),
+                      child: Consumer(builder: (_, ref, __) {
+                    final signupController = ref.watch(signUpProvider);
+                    return Form(
+                      key: _formKey,
+                      child: AutofillGroup(
+                        child: Column(
+                          children: [
+                            const YMargin(30),
+                            Text("Confirm account",
+                                style: mediumStyle(
+                                  22,
+                                  AppColors.black02,
+                                )),
+                            const YMargin(5),
+                            SizedBox(
+                              width: 200,
+                              child: Text(
+                                  "Enter the verification code sent to you",
+                                  textAlign: TextAlign.center,
+                                  style: normalStyle(
+                                    15,
+                                    AppColors.black02,
+                                  )),
                             ),
-                          ),
-                        ],
+                            const YMargin(20),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CustomTextField(
+                                  height: 78,
+                                  width: 60,
+                                  controller: t1,
+                                  maxLength: 1,
+                                  onChanged: (s) {
+                                    if (s.length == 1) {
+                                      FocusScope.of(context).nextFocus();
+                                    }
+                                  },
+                                  textAlign: TextAlign.center,
+                                  style: semiBoldStyle(20, AppColors.black02),
+                                ),
+                                const XMargin(9),
+                                CustomTextField(
+                                  height: 78,
+                                  width: 60,
+                                  controller: t2,
+                                  maxLength: 1,
+                                  onChanged: (s) {
+                                    if (s.length == 1) {
+                                      FocusScope.of(context).nextFocus();
+                                    } else if (s.isEmpty) {
+                                      FocusScope.of(context).previousFocus();
+                                    }
+                                  },
+                                  textAlign: TextAlign.center,
+                                  style: semiBoldStyle(20, AppColors.black02),
+                                ),
+                                const XMargin(9),
+                                CustomTextField(
+                                  height: 78,
+                                  width: 60,
+                                  controller: t3,
+                                  maxLength: 1,
+                                  onChanged: (s) {
+                                    if (s.length == 1) {
+                                      FocusScope.of(context).nextFocus();
+                                    } else if (s.isEmpty) {
+                                      FocusScope.of(context).previousFocus();
+                                    }
+                                  },
+                                  textAlign: TextAlign.center,
+                                  style: semiBoldStyle(20, AppColors.black02),
+                                ),
+                                const XMargin(9),
+                                CustomTextField(
+                                  height: 78,
+                                  width: 60,
+                                  controller: t4,
+                                  maxLength: 1,
+                                  onChanged: (s) {
+                                    if (s.length == 1) {
+                                      FocusScope.of(context).nextFocus();
+                                    } else if (s.isEmpty) {
+                                      FocusScope.of(context).previousFocus();
+                                    }
+                                  },
+                                  textAlign: TextAlign.center,
+                                  style: semiBoldStyle(20, AppColors.black02),
+                                ),
+                                const XMargin(9),
+                                CustomTextField(
+                                  height: 78,
+                                  width: 60,
+                                  controller: t5,
+                                  maxLength: 1,
+                                  onChanged: (s) {
+                                    if (s.length == 1) {
+                                      FocusScope.of(context).nextFocus();
+                                    } else if (s.isEmpty) {
+                                      FocusScope.of(context).previousFocus();
+                                    }
+                                  },
+                                  textAlign: TextAlign.center,
+                                  style: semiBoldStyle(20, AppColors.black02),
+                                ),
+                                const XMargin(9),
+                                CustomTextField(
+                                  height: 78,
+                                  width: 60,
+                                  controller: t6,
+                                  maxLength: 1,
+                                  onChanged: (s) {
+                                    if (s.length == 1) {
+                                      FocusScope.of(context).nextFocus();
+                                    } else if (s.isEmpty) {
+                                      FocusScope.of(context).previousFocus();
+                                    }
+                                  },
+                                  textAlign: TextAlign.center,
+                                  style: semiBoldStyle(20, AppColors.black02),
+                                ),
+                              ],
+                            ),
+                            const YMargin(50),
+                            Button(
+                                height: 50,
+                                text: "Verify",
+                                textStyle: mediumStyle(18, AppColors.white),
+                                loading: signupController.loading,
+                                function: () {
+                                  String otp = t1.text +
+                                      t2.text +
+                                      t3.text +
+                                      t4.text +
+                                      t5.text +
+                                      t6.text;
+                                  if (_formKey.currentState!.validate()) {
+                                    setState(() {
+                                      _otp = int.parse(otp);
+                                    });
+                                    signupController.verify(context,
+                                        params: _otp);
+                                  } else {
+                                    Helpers.sendFeedback(level: 2);
+                                  }
+                                }),
+                            const YMargin(50),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Didn't recieve any code? ",
+                                  style: mediumStyle(15, AppColors.grey04),
+                                ),
+                                GestureDetector(
+                                  onTap: () {},
+                                  child: Text(
+                                    "Resend code",
+                                    style: mediumStyle(
+                                      15,
+                                      AppColors.prim1,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ],
-                  )),
+                    );
+                  })),
                 ),
               ))
         ]),

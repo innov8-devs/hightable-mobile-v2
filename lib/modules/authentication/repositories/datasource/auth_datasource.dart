@@ -10,7 +10,7 @@ abstract class AuthDatasource {
   ///
   Future<Token> login(LoginParams params);
 
-  Future<UserEntity> verifyCustomer(num params);
+  Future<User> verifyCustomer(num params);
   Future<User> signup(SignupParams params);
   Future<UserEntity> updateCustomerPassword(
     UpdatePasswordParams params,
