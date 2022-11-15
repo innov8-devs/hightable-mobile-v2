@@ -244,7 +244,7 @@ class User extends Equatable {
               .map((e) => Restaurant.fromMap(e))
               .toList()
           : null,
-      token: map['token'],
+      // token: map['token'],
     );
   }
 

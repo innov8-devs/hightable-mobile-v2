@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 import 'package:hightable_mobile_v2/animations/bottom_up_animations.dart';
 import 'package:hightable_mobile_v2/animations/shaker.dart';
+import 'package:hightable_mobile_v2/modules/authentication/views/screens/signup_screen.dart';
 import 'package:hightable_mobile_v2/modules/resetpassword/views/reset-email.dart';
 import 'package:hightable_mobile_v2/utils/assets.dart';
 import 'package:hightable_mobile_v2/utils/custom_navigators.dart';
@@ -36,10 +37,7 @@ class _SignUpScreenState extends State<LoginScreen> {
   @override
   void initState() {
     Helpers.logc("currentPage: ${LoginScreen.routeName}");
-    _loginParams = LoginParams(
-      email: email.text,
-      password: password.text,
-    );
+
     super.initState();
   }
 
@@ -205,10 +203,17 @@ class _SignUpScreenState extends State<LoginScreen> {
                                     Button(
                                       height: 50,
                                       text: "Login",
+                                      loading: loginController.loading,
                                       textStyle:
                                           mediumStyle(18, AppColors.white),
                                       function: () {
                                         if (_formKey.currentState!.validate()) {
+                                          setState(() {
+                                            _loginParams = LoginParams(
+                                              email: email.text,
+                                              password: password.text,
+                                            );
+                                          });
                                           loginController
                                               .login(context,
                                                   params: _loginParams)
@@ -322,7 +327,10 @@ class _SignUpScreenState extends State<LoginScreen> {
                                               mediumStyle(15, AppColors.grey04),
                                         ),
                                         GestureDetector(
-                                          onTap: () {},
+                                          onTap: () {
+                                            AppNavigators.routeReplacefade(
+                                                context, const SignUpScreen());
+                                          },
                                           child: Text(
                                             "Sign Up",
                                             style: mediumStyle(

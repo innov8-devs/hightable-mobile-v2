@@ -18,8 +18,8 @@ class LoginParams {
 
   factory LoginParams.fromMap(Map<String, dynamic> map) {
     return LoginParams(
-      password: map['password'] as String,
       email: map['email'] as String,
+      password: map['password'] as String,
     );
   }
 

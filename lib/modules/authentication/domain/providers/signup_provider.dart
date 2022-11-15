@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hightable_mobile_v2/modules/authentication/domain/params/login_params.dart';
+import 'package:hightable_mobile_v2/modules/authentication/domain/params/signup_params.dart';
+import 'package:hightable_mobile_v2/modules/authentication/domain/usecases/signup.dart';
 import 'package:hightable_mobile_v2/modules/authentication/repositories/auth_repo_impl.dart';
 import 'package:hightable_mobile_v2/utils/helpers.dart';
 
@@ -19,11 +21,11 @@ import '../models/token.dart';
 import '../models/usermodel.dart';
 import '../usecases/login.dart';
 
-ChangeNotifierProvider<SignInProvider> signInProvider =
-    ChangeNotifierProvider((ref) => SignInProvider(ref: ref));
+ChangeNotifierProvider<SignUpProvider> signUpProvider =
+    ChangeNotifierProvider((ref) => SignUpProvider(ref: ref));
 
-class SignInProvider extends ChangeNotifier {
-  SignInProvider({required this.ref});
+class SignUpProvider extends ChangeNotifier {
+  SignUpProvider({required this.ref});
   Ref ref;
   bool _passVisible = false;
   bool _passRem = false;
@@ -48,27 +50,20 @@ class SignInProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<bool> login(
+  Future<bool> signUp(
     BuildContext context, {
-    required LoginParams params,
+    required SignupParams params,
     bool routeAfter = true,
   }) async {
     loading = true;
-    final Login login = locator();
-    final response = await login.call(
+    final SignUp signUp = locator();
+    final response = await signUp.call(
       params,
     );
 
-    response.when(success: (Token data) async {
-      loading = false;
-      _updateGQLConfig(
-        AuthOutput(
-          jwt: data.jwt,
-          expires: data.expires,
-        ),
-      );
+    response.when(success: (User data) async {
       Helpers.logc(data);
-      // await ref.read(applicationController).onLogin(data, context);
+      loading = false;
     }, failure: (error) {
       loading = false;
       final errorMessage = GQLExceptions.getErrorMessage(error);
@@ -77,32 +72,6 @@ class SignInProvider extends ChangeNotifier {
         errorMessage,
       );
     });
-
-    // if (response.hasError()) {
-    //   UI.showErrorSnack(
-    //     navigatorKey.currentState!.context,
-    //     loginRes.error!.message,
-    //   );
-    // } else {
-    //   final user = loginRes.success as User;
-    //   await ref.read(applicationController).onLogin(user, context);
-
-    //   // ignore: unnecessary_null_comparison
-    //   if (user == null) {
-    //     UI.showErrorSnack(context, "User data can not be found");
-    //   } else {
-    //     if (passRem) {
-    //       await locator
-    //           .get<PreferenceRepository>()
-    //           .put(AppConstants.isLoggedIn, true);
-    //       await locator
-    //           .get<PreferenceRepository>()
-    //           .put(AppConstants.email, email);
-    //     }
-    //     if (routeAfter) {}
-    //   }
-    //   return true;
-    // }
     return false;
   }
 

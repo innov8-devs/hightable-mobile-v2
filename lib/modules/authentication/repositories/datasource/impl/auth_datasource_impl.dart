@@ -1,6 +1,9 @@
+import 'package:hightable_mobile_v2/utils/helpers.dart';
+
 import '../../../../../core/al_flutter_core.dart';
 import '../../../domain/entities/user.dart';
 import '../../../domain/models/token.dart';
+import '../../../domain/models/usermodel.dart';
 import '../../../domain/params/login_params.dart';
 import '../../../domain/params/signup_params.dart';
 import '../../../domain/params/update_password_params.dart';
@@ -38,9 +41,16 @@ class AuthDatasourceImpl extends AuthDatasource {
   }
 
   @override
-  Future<UserEntity> signup(SignupParams params) {
-    // TODO: implement signup
-    throw UnimplementedError();
+  Future<User> signup(SignupParams params) async {
+    final response = await _algqlClient.gpMutate(
+      mutationDocument: mutateSignUp,
+      data: {
+        'customer': params.toMap(),
+      },
+    );
+    Helpers.logc(response.data!);
+    return User.fromMap(
+        response.data!['createCustomer']['customer'] as Map<String, dynamic>);
   }
 
   @override
