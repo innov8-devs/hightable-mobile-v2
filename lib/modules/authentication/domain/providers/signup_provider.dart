@@ -8,9 +8,11 @@ import 'package:hightable_mobile_v2/modules/authentication/domain/usecases/signu
 import 'package:hightable_mobile_v2/modules/authentication/domain/usecases/verify_customer.dart';
 import 'package:hightable_mobile_v2/modules/authentication/repositories/auth_repo_impl.dart';
 import 'package:hightable_mobile_v2/modules/authentication/views/screens/login_screen.dart';
+import 'package:hightable_mobile_v2/modules/resetpassword/views/new-password.dart';
 import 'package:hightable_mobile_v2/utils/custom_navigators.dart';
 import 'package:hightable_mobile_v2/utils/helpers.dart';
 import 'package:hightable_mobile_v2/utils/ui/helpers/otppage.dart';
+import 'package:hightable_mobile_v2/utils/ui/helpers/successpage.dart';
 
 import '../../../../core/application/domain/providers/application.dart';
 import '../../../../core/application/repositories/preference_repositories.dart';
@@ -71,6 +73,10 @@ class SignUpProvider extends ChangeNotifier {
       AppNavigators.routeReplacefade(
           context,
           OtpPage(
+            route: const SucessPage(
+                title: "Verified",
+                btntxt: "Welcome to HighTable!",
+                route: LoginScreen()),
             email: params.email.toString(),
           ));
       loading = false;
@@ -117,6 +123,8 @@ class SignUpProvider extends ChangeNotifier {
   Future<bool> verify(
     BuildContext context, {
     required num params,
+    required Widget route,
+    String? routename,
     bool routeAfter = true,
   }) async {
     loading = true;
@@ -127,7 +135,13 @@ class SignUpProvider extends ChangeNotifier {
 
     response.when(success: (User data) async {
       Helpers.logc(data);
-      AppNavigators.routeReplacefade(context, LoginScreen());
+      // ignore: unrelated_type_equality_checks
+      if (routename == NewPassword.routeName) {
+        AppNavigators.routeReplacefade(
+            context, NewPassword(code: params.toString()));
+      } else {
+        AppNavigators.routeReplacefade(context, route);
+      }
       loading = false;
     }, failure: (error) {
       loading = false;

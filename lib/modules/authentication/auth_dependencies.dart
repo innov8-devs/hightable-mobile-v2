@@ -1,4 +1,6 @@
+import 'package:hightable_mobile_v2/modules/authentication/domain/usecases/customer_password_reset.dart';
 import 'package:hightable_mobile_v2/modules/authentication/domain/usecases/sendVerification.dart';
+import 'package:hightable_mobile_v2/modules/authentication/domain/usecases/update_customer_password.dart';
 
 import '../../../core/config/DI/di.dart';
 import 'domain/repo/auth_repo.dart';
@@ -40,6 +42,17 @@ void registerAutDependencies() {
   );
   locator.registerLazySingleton<sendVerification>(
     () => sendVerification(
+      locator(),
+    ),
+  );
+
+  locator.registerLazySingleton<CustomerPasswordReset>(
+    () => CustomerPasswordReset(
+      locator(),
+    ),
+  );
+  locator.registerLazySingleton<UpdateCustomerPassword>(
+    () => UpdateCustomerPassword(
       locator(),
     ),
   );

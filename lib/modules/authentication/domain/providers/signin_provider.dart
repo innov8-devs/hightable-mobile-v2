@@ -25,9 +25,10 @@ ChangeNotifierProvider<SignInProvider> signInProvider =
 class SignInProvider extends ChangeNotifier {
   SignInProvider({required this.ref});
   Ref ref;
-  bool _passVisible = false;
+  bool _passVisible = true;
   bool _passRem = false;
   bool _loading = false;
+  bool requestState = false;
 
   bool get loading => _loading;
   bool get passVisible => _passVisible;
@@ -68,7 +69,18 @@ class SignInProvider extends ChangeNotifier {
         ),
       );
       Helpers.logc(data);
-      // await ref.read(applicationController).onLogin(data, context);
+      if (passRem) {
+        await locator
+            .get<PreferenceRepository>()
+            .put(AppConstants.isLoggedIn, true);
+        await locator
+            .get<PreferenceRepository>()
+            .put(AppConstants.email, params.email);
+        await locator
+            .get<PreferenceRepository>()
+            .put(AppConstants.email, params.email);
+      }
+      requestState = true;
     }, failure: (error) {
       loading = false;
       final errorMessage = GQLExceptions.getErrorMessage(error);
@@ -76,34 +88,10 @@ class SignInProvider extends ChangeNotifier {
         navigatorKey.currentState!.context,
         errorMessage,
       );
+      requestState = false;
     });
 
-    // if (response.hasError()) {
-    //   UI.showErrorSnack(
-    //     navigatorKey.currentState!.context,
-    //     loginRes.error!.message,
-    //   );
-    // } else {
-    //   final user = loginRes.success as User;
-    //   await ref.read(applicationController).onLogin(user, context);
-
-    //   // ignore: unnecessary_null_comparison
-    //   if (user == null) {
-    //     UI.showErrorSnack(context, "User data can not be found");
-    //   } else {
-    //     if (passRem) {
-    //       await locator
-    //           .get<PreferenceRepository>()
-    //           .put(AppConstants.isLoggedIn, true);
-    //       await locator
-    //           .get<PreferenceRepository>()
-    //           .put(AppConstants.email, email);
-    //     }
-    //     if (routeAfter) {}
-    //   }
-    //   return true;
-    // }
-    return false;
+    return requestState;
   }
 
   void _updateGQLConfig(AuthOutput authOutput) {

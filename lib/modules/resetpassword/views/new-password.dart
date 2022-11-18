@@ -3,10 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 import 'package:hightable_mobile_v2/animations/bottom_up_animations.dart';
 import 'package:hightable_mobile_v2/animations/shaker.dart';
+import 'package:hightable_mobile_v2/modules/authentication/domain/params/update_password_params.dart';
 import 'package:hightable_mobile_v2/modules/authentication/domain/providers/reset_password_provider.dart';
-import 'package:hightable_mobile_v2/modules/authentication/domain/providers/signup_provider.dart';
+import 'package:hightable_mobile_v2/modules/authentication/views/screens/login_screen.dart';
 import 'package:hightable_mobile_v2/modules/authentication/views/screens/signup_screen.dart';
-import 'package:hightable_mobile_v2/modules/resetpassword/views/new-password.dart';
 import 'package:hightable_mobile_v2/utils/assets.dart';
 import 'package:hightable_mobile_v2/utils/custom_navigators.dart';
 import 'package:hightable_mobile_v2/utils/helpers.dart';
@@ -21,23 +21,26 @@ import 'package:hightable_mobile_v2/utils/ui/widgets/text_field.dart';
 
 import '../../authentication/domain/providers/signin_provider.dart';
 
-class ResetEmail extends StatefulWidget {
-  static const String routeName = "/reset_email";
-  const ResetEmail({super.key});
+class NewPassword extends StatefulWidget {
+  static const String routeName = "/reset_page";
+  const NewPassword({required this.code, super.key});
+
+  final String code;
 
   @override
-  State<ResetEmail> createState() => _SignUpScreenState();
+  State<NewPassword> createState() => _SignUpScreenState();
 }
 
-class _SignUpScreenState extends State<ResetEmail> {
-  final email = TextEditingController();
+class _SignUpScreenState extends State<NewPassword> {
   final password = TextEditingController();
+  final confirmpassword = TextEditingController();
   final _shakeKey = GlobalKey<ShakerState>();
   final _formKey = GlobalKey<FormState>();
+  late UpdatePasswordParams _resetParams;
 
   @override
   void initState() {
-    Helpers.logc("currentPage: ${ResetEmail.routeName}");
+    Helpers.logc("currentPage: ${NewPassword.routeName}");
     super.initState();
   }
 
@@ -54,7 +57,7 @@ class _SignUpScreenState extends State<ResetEmail> {
               child: BottomUpAnimaitons(
                 delay: 1,
                 child: GlassContainer(
-                  height: screenHeight(context) / 1.7,
+                  height: screenHeight(context) / 1.5,
                   width: screenWidth(context) * 1.01,
                   blur: 4,
                   color: Colors.white.withOpacity(0.1),
@@ -85,7 +88,7 @@ class _SignUpScreenState extends State<ResetEmail> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     const YMargin(30),
-                                    Text("Forgot your password?",
+                                    Text("New Password?",
                                         style: mediumStyle(
                                           22,
                                           AppColors.black02,
@@ -93,7 +96,7 @@ class _SignUpScreenState extends State<ResetEmail> {
                                     SizedBox(
                                       width: 250,
                                       child: Text(
-                                          "Enter the e-mail used to register your account",
+                                          "Try not to misplace it this time 😉",
                                           textAlign: TextAlign.center,
                                           style: mediumStyle(
                                             15,
@@ -102,21 +105,40 @@ class _SignUpScreenState extends State<ResetEmail> {
                                     ),
                                     const YMargin(30),
                                     CustomTextField(
-                                      title: "Email",
-                                      controller: email,
+                                      title: "Enter new password",
+                                      controller: password,
                                     ),
-                                    const YMargin(10),
+                                    const YMargin(20),
+                                    CustomTextField(
+                                      title: "Confirm password",
+                                      controller: confirmpassword,
+                                      validator: (s) {
+                                        // ignore: unrelated_type_equality_checks
+                                        if (s != password.text) {
+                                          return "Passwords don't match";
+                                        }
+                                        return null;
+                                      },
+                                    ),
                                     const YMargin(20),
                                     Button(
                                         height: 50,
-                                        text: "Next",
+                                        text: "Submit",
                                         textStyle:
                                             mediumStyle(18, AppColors.white),
                                         function: () {
+                                          setState(() {
+                                            Helpers.logc(widget.code);
+                                            _resetParams = UpdatePasswordParams(
+                                              code: int.parse(widget.code),
+                                              password: password.text,
+                                            );
+                                          });
                                           if (_formKey.currentState!
                                               .validate()) {
-                                            resetController.resetinit(context,
-                                                params: email.text);
+                                            resetController.updatePassword(
+                                                context,
+                                                params: _resetParams);
                                           }
                                         }),
                                     const YMargin(150),
@@ -125,7 +147,10 @@ class _SignUpScreenState extends State<ResetEmail> {
                                           MainAxisAlignment.center,
                                       children: [
                                         GestureDetector(
-                                          onTap: () {},
+                                          onTap: () {
+                                            AppNavigators.routeReplacefade(
+                                                context, const LoginScreen());
+                                          },
                                           child: Text(
                                             "Back to login",
                                             style: mediumStyle(

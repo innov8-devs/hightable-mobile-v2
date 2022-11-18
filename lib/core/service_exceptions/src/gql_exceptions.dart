@@ -30,7 +30,8 @@ abstract class GQLExceptions with _$GQLExceptions {
       try {
         GQLExceptions? gqlException;
         if (exception is OperationException) {
-          final errorMessage = exception.graphqlErrors[0].message;
+          final errorMessage = exception
+              .graphqlErrors[0].extensions!['response']['body']['data'];
           gqlException = GQLExceptions.defaultError(errorMessage);
         } else if (exception is SocketException) {
           gqlException = const GQLExceptions.noInternetConnection();

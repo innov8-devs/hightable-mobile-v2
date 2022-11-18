@@ -18,9 +18,12 @@ import 'package:hightable_mobile_v2/utils/ui/widgets/text_field.dart';
 import '../../../modules/authentication/domain/providers/signup_provider.dart';
 
 class OtpPage extends StatefulWidget {
-  static const String routeName = "/reset_page";
+  static const String routeName = "/otp_page";
   final String email;
-  const OtpPage({required this.email, super.key});
+  final Widget route;
+  final String? routeNamee;
+  const OtpPage(
+      {this.routeNamee, required this.email, required this.route, super.key});
 
   @override
   State<OtpPage> createState() => _SignUpScreenState();
@@ -214,7 +217,9 @@ class _SignUpScreenState extends State<OtpPage> {
                                       _otp = int.parse(otp);
                                     });
                                     signupController.verify(context,
-                                        params: _otp);
+                                        route: widget.route,
+                                        params: _otp,
+                                        routename: widget.routeNamee);
                                   } else {
                                     Helpers.sendFeedback(level: 2);
                                   }

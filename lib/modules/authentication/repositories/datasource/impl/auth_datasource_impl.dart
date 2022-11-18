@@ -29,12 +29,6 @@ class AuthDatasourceImpl extends AuthDatasource {
   }
 
   @override
-  Future<UserEntity> customerPasswordReset(String params) {
-    // TODO: implement customerPasswordReset
-    throw UnimplementedError();
-  }
-
-  @override
   Future<UserEntity> getUser() {
     // TODO: implement getUser
     throw UnimplementedError();
@@ -66,9 +60,13 @@ class AuthDatasourceImpl extends AuthDatasource {
   }
 
   @override
-  Future<UserEntity> updateCustomerPassword(UpdatePasswordParams params) {
-    // TODO: implement updateCustomerPassword
-    throw UnimplementedError();
+  Future<User> updateCustomerPassword(UpdatePasswordParams params) async {
+    final response = await _algqlClient.gpMutate(
+      mutationDocument: mutateUpdateCustomerPassword,
+      data: params.toMap(),
+    );
+    return User.fromMap(
+        response.data!['updateCustomerPassword'] as Map<String, dynamic>);
   }
 
   @override
@@ -95,17 +93,17 @@ class AuthDatasourceImpl extends AuthDatasource {
   //       response.data!['findOneCustomer'] as Map<String, dynamic>);
   // }
 
-  // @override
-  // Future<User> customerPasswordReset(String params) async {
-  //   final response = await _algqlClient.gpQuery(
-  //     queryDocument: queryCustomerPasswordReset,
-  //     data: {
-  //       'email': params,
-  //     },
-  //   );
-  //   return User.fromMap(
-  //       response.data!['customerPasswordReset'] as Map<String, dynamic>);
-  // }
+  @override
+  Future<User> customerPasswordReset(String params) async {
+    final response = await _algqlClient.gpQuery(
+      queryDocument: queryCustomerPasswordReset,
+      data: {
+        'email': params,
+      },
+    );
+    return User.fromMap(
+        response.data!['customerPasswordReset'] as Map<String, dynamic>);
+  }
 
   // @override
   // Future<User> signup(SignupParams params) async {
@@ -117,16 +115,6 @@ class AuthDatasourceImpl extends AuthDatasource {
   //   );
   //   return User.fromMap(
   //       response.data!['createCustomer'] as Map<String, dynamic>);
-  // }
-
-  // @override
-  // Future<User> updateCustomerPassword(UpdatePasswordParams params) async {
-  //   final response = await _algqlClient.gpMutate(
-  //     mutationDocument: mutateUpdateCustomerPassword,
-  //     data: params.toMap(),
-  //   );
-  //   return User.fromMap(
-  //       response.data!['updateCustomerPassword'] as Map<String, dynamic>);
   // }
 
 }

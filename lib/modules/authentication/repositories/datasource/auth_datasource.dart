@@ -13,11 +13,11 @@ abstract class AuthDatasource {
   Future<User> verifyCustomer(num params);
   Future<User> signup(SignupParams params);
   Future<User> sendVerification(String params);
-  Future<UserEntity> updateCustomerPassword(
+  Future<User> updateCustomerPassword(
     UpdatePasswordParams params,
   );
 
-  Future<UserEntity> customerPasswordReset(
+  Future<User> customerPasswordReset(
     String params,
   );
 

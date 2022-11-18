@@ -3,6 +3,7 @@ class AppConstants {
   static const String imagePath = "assets/images/";
   static const String isLoggedIn = "is_logged_in";
   static const String email = "email";
+  static const String token = "token";
 
   ///[HiveBoxes].
   static const String boxOnBoarding = 'on_boarding_box';
