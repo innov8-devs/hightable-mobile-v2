@@ -16,11 +16,13 @@ class SucessPage extends StatefulWidget {
       {required this.title,
       required this.btntxt,
       required this.route,
+      required this.disaibled,
       super.key});
 
   final String title;
   final String btntxt;
   final Widget route;
+  final bool disaibled;
 
   @override
   State<SucessPage> createState() => _SignUpScreenState();
@@ -70,20 +72,22 @@ class _SignUpScreenState extends State<SucessPage> {
                           children: [
                             const YMargin(120),
                             Helpers.callPng(ImageAssets.check),
-                            const YMargin(50),
+                            const YMargin(40),
                             Text(widget.title,
                                 style: boldStyle(
                                   23,
                                   AppColors.black02,
                                 )),
-                            const YMargin(90),
+                            const YMargin(100),
                             Button(
                               height: 50,
                               text: widget.btntxt,
                               textStyle: mediumStyle(18, AppColors.white),
                               function: () {
-                                AppNavigators.routeReplacefade(
-                                    context, widget.route);
+                                widget.disaibled == true
+                                    ? null
+                                    : AppNavigators.routeReplacefade(
+                                        context, widget.route);
                               },
                             ),
                           ],

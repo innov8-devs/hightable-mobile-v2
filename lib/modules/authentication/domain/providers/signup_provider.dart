@@ -76,6 +76,7 @@ class SignUpProvider extends ChangeNotifier {
             route: const SucessPage(
                 title: "Verified",
                 btntxt: "Welcome to HighTable!",
+                disaibled: false,
                 route: LoginScreen()),
             email: params.email.toString(),
           ));

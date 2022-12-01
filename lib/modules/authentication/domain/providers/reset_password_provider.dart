@@ -13,6 +13,7 @@ import '../../../../core/config/config.dart';
 import '../../../../core/service_exceptions/src/gql_exceptions.dart';
 import '../../../../core/services/remote/al_gql_client.dart';
 import '../../../../main.dart';
+import '../../../../utils/ui/helpers/successpage.dart';
 import '../../../../utils/ui/ui_helpers.dart';
 import '../../../authentication/domain/models/usermodel.dart';
 import '../usecases/customer_password_reset.dart';
@@ -88,7 +89,14 @@ class ResetPasswordProvider extends ChangeNotifier {
 
     response.when(success: (User data) async {
       loading = false;
-      AppNavigators.routeReplacefade(context, const LoginScreen());
+      AppNavigators.routeReplacefade(
+          context,
+          const SucessPage(
+            title: "Success",
+            btntxt: "Please Login!",
+            route: LoginScreen(),
+            disaibled: false,
+          ));
       Helpers.logc(data);
       requestState = true;
     }, failure: (error) {
