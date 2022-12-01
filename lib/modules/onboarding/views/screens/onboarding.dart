@@ -75,7 +75,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               AppColors.grey03,
                             )),
                       ),
-                      const YMargin(30),
+                      const YMargin(5),
                       SizedBox(
                         width: screenWidth(context),
                         child: Row(

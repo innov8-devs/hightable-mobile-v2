@@ -101,103 +101,141 @@ class _SignUpScreenState extends State<OtpPage> {
                                   )),
                             ),
                             const YMargin(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                CustomTextField(
-                                  height: 78,
-                                  width: 60,
-                                  controller: t1,
-                                  maxLength: 1,
-                                  onChanged: (s) {
-                                    if (s.length == 1) {
-                                      FocusScope.of(context).nextFocus();
-                                    }
-                                  },
-                                  textAlign: TextAlign.center,
-                                  style: semiBoldStyle(20, AppColors.black02),
-                                ),
-                                const XMargin(9),
-                                CustomTextField(
-                                  height: 78,
-                                  width: 60,
-                                  controller: t2,
-                                  maxLength: 1,
-                                  onChanged: (s) {
-                                    if (s.length == 1) {
-                                      FocusScope.of(context).nextFocus();
-                                    } else if (s.isEmpty) {
-                                      FocusScope.of(context).previousFocus();
-                                    }
-                                  },
-                                  textAlign: TextAlign.center,
-                                  style: semiBoldStyle(20, AppColors.black02),
-                                ),
-                                const XMargin(9),
-                                CustomTextField(
-                                  height: 78,
-                                  width: 60,
-                                  controller: t3,
-                                  maxLength: 1,
-                                  onChanged: (s) {
-                                    if (s.length == 1) {
-                                      FocusScope.of(context).nextFocus();
-                                    } else if (s.isEmpty) {
-                                      FocusScope.of(context).previousFocus();
-                                    }
-                                  },
-                                  textAlign: TextAlign.center,
-                                  style: semiBoldStyle(20, AppColors.black02),
-                                ),
-                                const XMargin(9),
-                                CustomTextField(
-                                  height: 78,
-                                  width: 60,
-                                  controller: t4,
-                                  maxLength: 1,
-                                  onChanged: (s) {
-                                    if (s.length == 1) {
-                                      FocusScope.of(context).nextFocus();
-                                    } else if (s.isEmpty) {
-                                      FocusScope.of(context).previousFocus();
-                                    }
-                                  },
-                                  textAlign: TextAlign.center,
-                                  style: semiBoldStyle(20, AppColors.black02),
-                                ),
-                                const XMargin(9),
-                                CustomTextField(
-                                  height: 78,
-                                  width: 60,
-                                  controller: t5,
-                                  maxLength: 1,
-                                  onChanged: (s) {
-                                    if (s.length == 1) {
-                                      FocusScope.of(context).nextFocus();
-                                    } else if (s.isEmpty) {
-                                      FocusScope.of(context).previousFocus();
-                                    }
-                                  },
-                                  textAlign: TextAlign.center,
-                                  style: semiBoldStyle(20, AppColors.black02),
-                                ),
-                                const XMargin(9),
-                                CustomTextField(
-                                  height: 78,
-                                  width: 60,
-                                  controller: t6,
-                                  maxLength: 1,
-                                  onChanged: (s) {
-                                    if (s.length == 1) {
-                                      FocusScope.of(context).nextFocus();
-                                    } else if (s.isEmpty) {
-                                      FocusScope.of(context).previousFocus();
-                                    }
-                                  },
-                                  textAlign: TextAlign.center,
-                                  style: semiBoldStyle(20, AppColors.black02),
-                                ),
-                              ],
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    width: 40,
+                                    child: TextField(
+                                      decoration: const InputDecoration(
+                                          counterText: ""),
+                                      controller: t1,
+                                      maxLength: 1,
+                                      onChanged: (s) {
+                                        if (s.length == 1) {
+                                          FocusScope.of(context).nextFocus();
+                                        }
+                                      },
+                                      textAlign: TextAlign.center,
+                                      style:
+                                          semiBoldStyle(20, AppColors.black02),
+                                    ),
+                                  ),
+                                  const XMargin(9),
+                                  SizedBox(
+                                    width: 40,
+                                    child: TextField(
+                                      decoration: const InputDecoration(
+                                          counterText: ""),
+                                      controller: t2,
+                                      maxLength: 1,
+                                      onChanged: (s) {
+                                        if (s.length == 1) {
+                                          FocusScope.of(context).nextFocus();
+                                        } else if (s.isEmpty) {
+                                          FocusScope.of(context)
+                                              .previousFocus();
+                                        }
+                                      },
+                                      textAlign: TextAlign.center,
+                                      style:
+                                          semiBoldStyle(20, AppColors.black02),
+                                    ),
+                                  ),
+                                  const XMargin(9),
+                                  SizedBox(
+                                    width: 40,
+                                    child: TextField(
+                                      decoration: const InputDecoration(
+                                          counterText: ""),
+                                      controller: t3,
+                                      maxLength: 1,
+                                      onChanged: (s) {
+                                        if (s.length == 1) {
+                                          FocusScope.of(context).nextFocus();
+                                        } else if (s.isEmpty) {
+                                          FocusScope.of(context)
+                                              .previousFocus();
+                                        }
+                                      },
+                                      textAlign: TextAlign.center,
+                                      style:
+                                          semiBoldStyle(20, AppColors.black02),
+                                    ),
+                                  ),
+                                  const XMargin(15),
+                                  Container(
+                                    height: 1,
+                                    width: 20,
+                                    color: AppColors.black02,
+                                  ),
+                                  const XMargin(15),
+                                  SizedBox(
+                                    width: 40,
+                                    child: TextField(
+                                      decoration: const InputDecoration(
+                                          counterText: ""),
+                                      controller: t4,
+                                      maxLength: 1,
+                                      onChanged: (s) {
+                                        if (s.length == 1) {
+                                          FocusScope.of(context).nextFocus();
+                                        } else if (s.isEmpty) {
+                                          FocusScope.of(context)
+                                              .previousFocus();
+                                        }
+                                      },
+                                      textAlign: TextAlign.center,
+                                      style:
+                                          semiBoldStyle(20, AppColors.black02),
+                                    ),
+                                  ),
+                                  const XMargin(9),
+                                  SizedBox(
+                                    width: 40,
+                                    child: TextField(
+                                      decoration: const InputDecoration(
+                                          counterText: ""),
+                                      controller: t5,
+                                      maxLength: 1,
+                                      onChanged: (s) {
+                                        if (s.length == 1) {
+                                          FocusScope.of(context).nextFocus();
+                                        } else if (s.isEmpty) {
+                                          FocusScope.of(context)
+                                              .previousFocus();
+                                        }
+                                      },
+                                      textAlign: TextAlign.center,
+                                      style:
+                                          semiBoldStyle(20, AppColors.black02),
+                                    ),
+                                  ),
+                                  const XMargin(9),
+                                  SizedBox(
+                                    width: 40,
+                                    child: TextField(
+                                      decoration: const InputDecoration(
+                                          counterText: ""),
+                                      controller: t6,
+                                      maxLength: 1,
+                                      onChanged: (s) {
+                                        if (s.length == 1) {
+                                          FocusScope.of(context).nextFocus();
+                                        } else if (s.isEmpty) {
+                                          FocusScope.of(context)
+                                              .previousFocus();
+                                        }
+                                      },
+                                      textAlign: TextAlign.center,
+                                      style:
+                                          semiBoldStyle(20, AppColors.black02),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                             const YMargin(50),
                             Button(

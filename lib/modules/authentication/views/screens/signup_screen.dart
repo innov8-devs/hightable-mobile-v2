@@ -170,21 +170,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 // SEPARATOR
 
                                 Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Container(
                                       height: 2,
-                                      width: 130,
+                                      width: 100,
                                       color: AppColors.grey04,
                                     ),
+                                    const XMargin(5),
                                     Text(
                                       "Or continue with",
                                       style: mediumStyle(14, AppColors.grey04),
                                     ),
+                                    const XMargin(5),
                                     Container(
                                       height: 2,
-                                      width: 130,
+                                      width: 100,
                                       color: AppColors.grey04,
                                     )
                                   ],
