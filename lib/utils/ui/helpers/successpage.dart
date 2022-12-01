@@ -71,7 +71,10 @@ class _SignUpScreenState extends State<SucessPage> {
                         child: Column(
                           children: [
                             const YMargin(120),
-                            Helpers.callPng(ImageAssets.check),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 15.0),
+                              child: Helpers.callPng(ImageAssets.check),
+                            ),
                             const YMargin(40),
                             Text(widget.title,
                                 style: boldStyle(

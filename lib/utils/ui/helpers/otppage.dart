@@ -109,6 +109,7 @@ class _SignUpScreenState extends State<OtpPage> {
                                   SizedBox(
                                     width: 40,
                                     child: TextField(
+                                      keyboardType: TextInputType.number,
                                       decoration: const InputDecoration(
                                           counterText: ""),
                                       controller: t1,
@@ -127,6 +128,7 @@ class _SignUpScreenState extends State<OtpPage> {
                                   SizedBox(
                                     width: 40,
                                     child: TextField(
+                                      keyboardType: TextInputType.number,
                                       decoration: const InputDecoration(
                                           counterText: ""),
                                       controller: t2,
@@ -148,6 +150,7 @@ class _SignUpScreenState extends State<OtpPage> {
                                   SizedBox(
                                     width: 40,
                                     child: TextField(
+                                      keyboardType: TextInputType.number,
                                       decoration: const InputDecoration(
                                           counterText: ""),
                                       controller: t3,
@@ -175,6 +178,7 @@ class _SignUpScreenState extends State<OtpPage> {
                                   SizedBox(
                                     width: 40,
                                     child: TextField(
+                                      keyboardType: TextInputType.number,
                                       decoration: const InputDecoration(
                                           counterText: ""),
                                       controller: t4,
@@ -196,6 +200,7 @@ class _SignUpScreenState extends State<OtpPage> {
                                   SizedBox(
                                     width: 40,
                                     child: TextField(
+                                      keyboardType: TextInputType.number,
                                       decoration: const InputDecoration(
                                           counterText: ""),
                                       controller: t5,
@@ -217,6 +222,7 @@ class _SignUpScreenState extends State<OtpPage> {
                                   SizedBox(
                                     width: 40,
                                     child: TextField(
+                                      keyboardType: TextInputType.number,
                                       decoration: const InputDecoration(
                                           counterText: ""),
                                       controller: t6,
