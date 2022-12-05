@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hightable_mobile_v2/animations/shaker.dart';
 import 'package:hightable_mobile_v2/modules/accountsetup/domain/providers/setup_provider.dart';
 import 'package:hightable_mobile_v2/modules/accountsetup/views/widgets/interests_container.dart';
+import 'package:hightable_mobile_v2/modules/accountsetup/views/widgets/interests_widgets.dart';
 import 'package:hightable_mobile_v2/modules/accountsetup/views/widgets/steps_indicator.dart';
 import 'package:hightable_mobile_v2/utils/assets.dart';
 import 'package:hightable_mobile_v2/utils/constants.dart';
@@ -76,7 +77,8 @@ class _AccountSetupState extends ConsumerState<AccountSetup> {
             const YMargin(20),
             SizedBox(
               width: 350,
-              child: Text("Please setup your Prefrences in a few simple steps",
+              child: Text(
+                  "Please setup your ${setupController.interests == true ? "interests" : setupController.prefrences == true ? "prefrences" : setupController.allergies == true ? "allergies" : "interests"} in a few simple steps",
                   textAlign: TextAlign.center,
                   style: semiBoldStyle(
                     18.5,
@@ -85,77 +87,20 @@ class _AccountSetupState extends ConsumerState<AccountSetup> {
             ),
             const YMargin(10),
             setupController.selectedInterests.length < 3
-                ? Text("Select at least 3 interests",
+                ? Text(
+                    "Select at least 3 ${setupController.interests == true ? "interests" : setupController.prefrences == true ? "prefrences" : setupController.allergies == true ? "allergies" : "interests"}",
                     style: semiBoldStyle(
                       12,
                       AppColors.errorColor,
                     ))
-                : Text("Select at least 3 interests",
+                : Text(
+                    "Select at least 3 ${setupController.interests == true ? "interests" : setupController.prefrences == true ? "prefrences" : setupController.allergies == true ? "allergies" : "interests"}",
                     style: semiBoldStyle(
                       12,
                       AppColors.grey06,
                     )),
             const YMargin(15),
-            Wrap(
-              runSpacing: 10,
-              spacing: 15,
-              children: [
-                ...List.generate(
-                  AppConstants.interests.length,
-                  (index) => GestureDetector(
-                      onTap: () {
-                        setupController
-                            .addItem(AppConstants.interests[index].toString());
-                      },
-                      child: InterestsContainer(
-                        content: AppConstants.interests[index],
-                        selected: setupController.selectedInterests.contains(
-                                AppConstants.interests[index].toString())
-                            ? true
-                            : false,
-                      )),
-                ),
-              ],
-            ),
-            const YMargin(20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 22),
-              child: SizedBox(
-                // width: 250,
-                height: 56,
-                child: DropdownButtonFormField(
-                  hint: const Text("Find more interests"),
-                  icon: const Icon(Icons.keyboard_arrow_down),
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: const BorderSide(
-                        color: AppColors.black02,
-                      ),
-                    ),
-                  ),
-                  onChanged: (_) {},
-                  items: [],
-                ),
-              ),
-            ),
-            const YMargin(30),
-            Button(
-              text: "Continue",
-              textStyle: mediumStyle(16, AppColors.white),
-              function: () {
-                setupController.saveInterests(context);
-              },
-            ),
-            const YMargin(20),
-            Text(
-              "Skip",
-              style: mediumStyle(
-                15,
-                AppColors.prim1,
-              ),
-            ),
-            const YMargin(20),
+            const InterestsWidget()
           ],
         ),
       )),

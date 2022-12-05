@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hightable_mobile_v2/modules/accountsetup/views/acc_setup.dart';
 import 'package:hightable_mobile_v2/modules/authentication/domain/params/login_params.dart';
 import 'package:hightable_mobile_v2/modules/authentication/domain/params/signup_params.dart';
 import 'package:hightable_mobile_v2/modules/authentication/domain/usecases/sendVerification.dart';
@@ -77,7 +78,7 @@ class SignUpProvider extends ChangeNotifier {
                 title: "Verified",
                 btntxt: "Welcome to HighTable!",
                 disaibled: false,
-                route: LoginScreen()),
+                route: AccountSetup()),
             email: params.email.toString(),
           ));
       loading = false;
