@@ -43,38 +43,56 @@ class _StepsIndicatorState extends State<StepsIndicator> {
                   ),
                 ],
               ),
-              Container(
-                height: 5,
-                width: 120,
-                color:
-                    widget.stage1 == true ? AppColors.prim1 : AppColors.grey06,
+              Stack(
+                children: [
+                  Container(
+                    height: 5,
+                    width: 120,
+                    color: AppColors.grey06,
+                  ),
+                  AnimatedContainer(
+                    height: 5,
+                    width: widget.stage1 == true ? 120 : 0,
+                    color: AppColors.prim1,
+                    duration: const Duration(milliseconds: 300),
+                  ),
+                ],
               ),
               Container(
                   height: 25,
                   width: 25,
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: widget.stage2 == true
+                      border: widget.stage1 == true
                           ? Border.all(color: AppColors.transparent)
                           : Border.all(color: AppColors.grey06, width: 2.5),
-                      color: widget.stage2 == true
+                      color: widget.stage1 == true
                           ? AppColors.prim1
                           : AppColors.transparent),
                   child: Center(
                     child: Text(
                       "2",
                       style: TextStyle(
-                          color: widget.stage2 == true
+                          color: widget.stage1 == true
                               ? AppColors.white
                               : AppColors.grey06,
                           fontSize: 17),
                     ),
                   )),
-              Container(
-                height: 5,
-                width: 120,
-                color:
-                    widget.stage2 == true ? AppColors.prim1 : AppColors.grey06,
+              Stack(
+                children: [
+                  Container(
+                    height: 5,
+                    width: 120,
+                    color: AppColors.grey06,
+                  ),
+                  AnimatedContainer(
+                    height: 5,
+                    width: widget.stage2 == true ? 120 : 0,
+                    color: AppColors.prim1,
+                    duration: const Duration(milliseconds: 300),
+                  ),
+                ],
               ),
               Container(
                   height: 25,

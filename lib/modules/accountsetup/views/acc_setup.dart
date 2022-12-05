@@ -68,10 +68,10 @@ class _AccountSetupState extends ConsumerState<AccountSetup> {
                 )
               ],
             ),
-            const StepsIndicator(
-              stage1: false,
-              stage2: false,
-              stage3: false,
+            StepsIndicator(
+              stage1: setupController.interests,
+              stage2: setupController.prefrences,
+              stage3: setupController.allergies,
             ),
             const YMargin(20),
             SizedBox(
@@ -143,7 +143,9 @@ class _AccountSetupState extends ConsumerState<AccountSetup> {
             Button(
               text: "Continue",
               textStyle: mediumStyle(16, AppColors.white),
-              function: () {},
+              function: () {
+                setupController.saveInterests(context);
+              },
             ),
             const YMargin(20),
             Text(
