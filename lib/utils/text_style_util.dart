@@ -93,6 +93,7 @@ TextStyle italicStyle(
 TextStyle customStyle(
   double size,
   Color color,
+  double? height,
   FontWeight fontWeight, {
   TextDecoration? decoration,
   String? family,
@@ -100,9 +101,9 @@ TextStyle customStyle(
   return TextStyle(
     fontSize: size,
     color: color,
-    fontStyle: FontStyle.italic,
+    fontStyle: FontStyle.normal,
     fontWeight: fontWeight,
-    height: 1.5,
+    height: height ?? 1.5,
     decoration: decoration,
     fontFamily: family ?? 'Inter',
   );

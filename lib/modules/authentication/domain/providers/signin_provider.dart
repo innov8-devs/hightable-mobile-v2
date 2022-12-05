@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hightable_mobile_v2/modules/accountsetup/views/acc_setup.dart';
 import 'package:hightable_mobile_v2/modules/authentication/domain/params/login_params.dart';
 import 'package:hightable_mobile_v2/modules/authentication/repositories/auth_repo_impl.dart';
 import 'package:hightable_mobile_v2/utils/custom_navigators.dart';
@@ -87,9 +88,9 @@ class SignInProvider extends ChangeNotifier {
           context,
           const SucessPage(
               title: "Welcome Back",
-              btntxt: "Please Continue!",
+              btntxt: "Continue!",
               disaibled: true,
-              route: LoginScreen()));
+              route: AccountSetup()));
       requestState = true;
     }, failure: (error) {
       loading = false;

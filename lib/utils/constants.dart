@@ -17,4 +17,19 @@ class AppConstants {
   static const String keyIsOnboarded = 'isOnboarded';
   static const String keyUserDetails = 'user';
   static const String keyPreferences = 'preferences';
+
+  static const List interests = [
+    "Outdoors",
+    "Fashon & Beauty",
+    "Fitness",
+    "Drinks",
+    "Music",
+    "Large Events",
+    "Food",
+    "Clubs",
+    "Concerts",
+    "Movies",
+    "Arts & Culture",
+    "Travel"
+  ];
 }

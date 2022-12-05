@@ -87,10 +87,8 @@ class _SignUpScreenState extends State<SucessPage> {
                               text: widget.btntxt,
                               textStyle: mediumStyle(18, AppColors.white),
                               function: () {
-                                widget.disaibled == true
-                                    ? null
-                                    : AppNavigators.routeReplacefade(
-                                        context, widget.route);
+                                AppNavigators.routeReplacefade(
+                                    context, widget.route);
                               },
                             ),
                           ],
