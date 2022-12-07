@@ -35,11 +35,18 @@ class _StepsIndicatorState extends State<StepsIndicator> {
                     width: 25,
                     decoration: const BoxDecoration(
                         shape: BoxShape.circle, color: AppColors.prim1),
-                    child: const Center(
-                        child: Text(
-                      "1",
-                      style: TextStyle(color: AppColors.white, fontSize: 17),
-                    )),
+                    child: Center(
+                        child: widget.stage1 == true
+                            ? const Icon(
+                                Icons.check,
+                                size: 14,
+                                color: AppColors.white,
+                              )
+                            : const Text(
+                                "1",
+                                style: TextStyle(
+                                    color: AppColors.white, fontSize: 17),
+                              )),
                   ),
                 ],
               ),
@@ -59,26 +66,32 @@ class _StepsIndicatorState extends State<StepsIndicator> {
                 ],
               ),
               Container(
-                  height: 25,
-                  width: 25,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: widget.stage1 == true
-                          ? Border.all(color: AppColors.transparent)
-                          : Border.all(color: AppColors.grey06, width: 2.5),
-                      color: widget.stage1 == true
-                          ? AppColors.prim1
-                          : AppColors.transparent),
-                  child: Center(
-                    child: Text(
-                      "2",
-                      style: TextStyle(
-                          color: widget.stage1 == true
-                              ? AppColors.white
-                              : AppColors.grey06,
-                          fontSize: 17),
-                    ),
-                  )),
+                height: 25,
+                width: 25,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: widget.stage1 == true
+                        ? Border.all(color: AppColors.transparent)
+                        : Border.all(color: AppColors.grey06, width: 2.5),
+                    color: widget.stage1 == true
+                        ? AppColors.prim1
+                        : AppColors.transparent),
+                child: Center(
+                    child: widget.stage2 == true
+                        ? const Icon(
+                            Icons.check,
+                            size: 14,
+                            color: AppColors.white,
+                          )
+                        : Text(
+                            "2",
+                            style: TextStyle(
+                                color: widget.stage1 == true
+                                    ? AppColors.white
+                                    : AppColors.grey06,
+                                fontSize: 17),
+                          )),
+              ),
               Stack(
                 children: [
                   Container(
@@ -95,26 +108,32 @@ class _StepsIndicatorState extends State<StepsIndicator> {
                 ],
               ),
               Container(
-                  height: 25,
-                  width: 25,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: widget.stage3 == true
-                          ? Border.all(color: AppColors.transparent)
-                          : Border.all(color: AppColors.grey06, width: 2.5),
-                      color: widget.stage3 == true
-                          ? AppColors.prim1
-                          : AppColors.transparent),
-                  child: Center(
-                    child: Text(
-                      "3",
-                      style: TextStyle(
-                          color: widget.stage3 == true
-                              ? AppColors.white
-                              : AppColors.grey06,
-                          fontSize: 17),
-                    ),
-                  )),
+                height: 25,
+                width: 25,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: widget.stage3 == true
+                        ? Border.all(color: AppColors.transparent)
+                        : Border.all(color: AppColors.grey06, width: 2.5),
+                    color: widget.stage3 == true
+                        ? AppColors.prim1
+                        : AppColors.transparent),
+                child: Center(
+                    child: widget.stage3 == true
+                        ? const Icon(
+                            Icons.check,
+                            size: 14,
+                            color: AppColors.white,
+                          )
+                        : Text(
+                            "3",
+                            style: TextStyle(
+                                color: widget.stage3 == true
+                                    ? AppColors.white
+                                    : AppColors.grey06,
+                                fontSize: 17),
+                          )),
+              ),
             ],
           ),
           SizedBox(

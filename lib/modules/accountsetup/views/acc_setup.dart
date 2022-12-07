@@ -5,6 +5,7 @@ import 'package:hightable_mobile_v2/animations/shaker.dart';
 import 'package:hightable_mobile_v2/modules/accountsetup/domain/providers/setup_provider.dart';
 import 'package:hightable_mobile_v2/modules/accountsetup/views/widgets/interests_container.dart';
 import 'package:hightable_mobile_v2/modules/accountsetup/views/widgets/interests_widgets.dart';
+import 'package:hightable_mobile_v2/modules/accountsetup/views/widgets/prefrences_widgets.dart';
 import 'package:hightable_mobile_v2/modules/accountsetup/views/widgets/steps_indicator.dart';
 import 'package:hightable_mobile_v2/utils/assets.dart';
 import 'package:hightable_mobile_v2/utils/constants.dart';
@@ -78,7 +79,7 @@ class _AccountSetupState extends ConsumerState<AccountSetup> {
             SizedBox(
               width: 350,
               child: Text(
-                  "Please setup your ${setupController.interests == true ? "interests" : setupController.prefrences == true ? "prefrences" : setupController.allergies == true ? "allergies" : "interests"} in a few simple steps",
+                  "Please setup your ${setupController.interests == true ? "prefrences" : setupController.prefrences == true ? "allergies" : setupController.allergies == true ? "allergies" : "interests"} in a few simple steps",
                   textAlign: TextAlign.center,
                   style: semiBoldStyle(
                     18.5,
@@ -88,19 +89,37 @@ class _AccountSetupState extends ConsumerState<AccountSetup> {
             const YMargin(10),
             setupController.selectedInterests.length < 3
                 ? Text(
-                    "Select at least 3 ${setupController.interests == true ? "interests" : setupController.prefrences == true ? "prefrences" : setupController.allergies == true ? "allergies" : "interests"}",
+                    "Select at least 3 ${setupController.interests == true ? "prefrences" : setupController.prefrences == true ? "allergies" : setupController.allergies == true ? "allergies" : "interests"}",
                     style: semiBoldStyle(
                       12,
                       AppColors.errorColor,
                     ))
                 : Text(
-                    "Select at least 3 ${setupController.interests == true ? "interests" : setupController.prefrences == true ? "prefrences" : setupController.allergies == true ? "allergies" : "interests"}",
+                    "Select at least 3 ${setupController.interests == true ? "prefrences" : setupController.prefrences == true ? "allergies" : setupController.allergies == true ? "allergies" : "interests"}",
                     style: semiBoldStyle(
                       12,
                       AppColors.grey06,
                     )),
             const YMargin(15),
-            const InterestsWidget()
+            setupController.interests == true
+                ? const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 25),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: PrefrencesWidget(prefrenceTitle: [
+                        "Outdoor",
+                        "Music"
+                      ], prefrenceContent: [
+                        "Driving",
+                        "Hiking",
+                        "Rock Climbing",
+                        "Flying",
+                        "Walking",
+                        " Climbing"
+                      ]),
+                    ),
+                  )
+                : const InterestsWidget()
           ],
         ),
       )),

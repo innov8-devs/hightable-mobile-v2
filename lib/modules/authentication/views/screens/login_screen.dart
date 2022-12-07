@@ -45,6 +45,7 @@ class _SignUpScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Stack(children: [
           const Background(),
@@ -54,7 +55,7 @@ class _SignUpScreenState extends State<LoginScreen> {
               child: BottomUpAnimaitons(
                 delay: 1,
                 child: GlassContainer(
-                  height: screenHeight(context) / 1.5,
+                  height: screenHeight(context) / 1.35,
                   width: screenWidth(context) * 1.01,
                   blur: 4,
                   color: Colors.white.withOpacity(0.1),

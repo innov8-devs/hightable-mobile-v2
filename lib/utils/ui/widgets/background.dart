@@ -16,6 +16,7 @@ class BackgroundState extends State<Background> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: SizedBox(
           child: Stack(

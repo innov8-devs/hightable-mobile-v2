@@ -18,6 +18,11 @@ class SetupProvider extends ChangeNotifier {
   bool prefrences = false;
   bool allergies = false;
 
+  String prefrenceTitle = "";
+  List<String> selectedPrefrence = [];
+
+  int setupStage = 0;
+
   List<String> selectedInterests = [];
 
   // getters
@@ -29,11 +34,20 @@ class SetupProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addItem(String filter) {
+  void addInterests(String filter) {
     if (!selectedInterests.contains(filter)) {
       selectedInterests.add(filter);
     } else {
       selectedInterests.remove(filter);
+    }
+    notifyListeners();
+  }
+
+  void addPrefrences(String filter) {
+    if (!selectedPrefrence.contains(filter)) {
+      selectedPrefrence.add(filter);
+    } else {
+      selectedPrefrence.remove(filter);
     }
     notifyListeners();
   }
@@ -45,7 +59,7 @@ class SetupProvider extends ChangeNotifier {
   }
 
   Future<void> savePrefrences(BuildContext context) async {
-    // Helpers.logc(selectedInterests);
+    Helpers.logc(selectedPrefrence);
     prefrences = true;
     notifyListeners();
   }

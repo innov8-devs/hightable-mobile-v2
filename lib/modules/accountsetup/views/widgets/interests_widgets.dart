@@ -31,7 +31,7 @@ class _InterestsWidgetState extends ConsumerState<InterestsWidget> {
               (index) => GestureDetector(
                   onTap: () {
                     setupController
-                        .addItem(AppConstants.interests[index].toString());
+                        .addInterests(AppConstants.interests[index].toString());
                   },
                   child: InterestsContainer(
                     content: AppConstants.interests[index],

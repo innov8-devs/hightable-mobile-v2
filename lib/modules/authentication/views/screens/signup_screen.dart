@@ -33,9 +33,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final confirmPassword = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   late SignupParams _signupParams;
+  Matrix4 scaleXYZTransform({
+    double scaleX = 1.00,
+    double scaleY = 1.00,
+    double scaleZ = 1.00,
+  }) {
+    return Matrix4.diagonal3Values(scaleX, scaleY, scaleZ);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Stack(children: [
           const Background(),

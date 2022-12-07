@@ -90,7 +90,7 @@ class SignInProvider extends ChangeNotifier {
               title: "Welcome Back",
               btntxt: "Continue!",
               disaibled: true,
-              route: LoginScreen()));
+              route: AccountSetup()));
       requestState = true;
     }, failure: (error) {
       loading = false;
