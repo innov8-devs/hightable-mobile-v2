@@ -23,6 +23,7 @@ class AccountSetup extends ConsumerStatefulWidget {
 }
 
 class _AccountSetupState extends ConsumerState<AccountSetup> {
+  final _shakeKey = GlobalKey<ShakerState>();
   @override
   Widget build(BuildContext context) {
     final setupController = ref.watch(setupProvider);
@@ -88,12 +89,15 @@ class _AccountSetupState extends ConsumerState<AccountSetup> {
             ),
             const YMargin(10),
             setupController.selectedInterests.length < 3
-                ? Text(
-                    "Select at least 3 ${setupController.interests == true ? "prefrences" : setupController.prefrences == true ? "allergies" : setupController.allergies == true ? "allergies" : "interests"}",
-                    style: semiBoldStyle(
-                      12,
-                      AppColors.errorColor,
-                    ))
+                ? Shaker(
+                    key: _shakeKey,
+                    child: Text(
+                        "Select at least 3 ${setupController.interests == true ? "prefrences" : setupController.prefrences == true ? "allergies" : setupController.allergies == true ? "allergies" : "interests"}",
+                        style: semiBoldStyle(
+                          12,
+                          AppColors.errorColor,
+                        )),
+                  )
                 : Text(
                     "Select at least 3 ${setupController.interests == true ? "prefrences" : setupController.prefrences == true ? "allergies" : setupController.allergies == true ? "allergies" : "interests"}",
                     style: semiBoldStyle(
@@ -119,7 +123,9 @@ class _AccountSetupState extends ConsumerState<AccountSetup> {
                       ]),
                     ),
                   )
-                : const InterestsWidget()
+                : InterestsWidget(
+                    shakeKey: _shakeKey,
+                  )
           ],
         ),
       )),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hightable_mobile_v2/animations/shaker.dart';
 
 import '../../../../utils/constants.dart';
 import '../../../../utils/spacer.dart';
@@ -10,7 +11,8 @@ import '../../domain/providers/setup_provider.dart';
 import 'interests_container.dart';
 
 class InterestsWidget extends ConsumerStatefulWidget {
-  const InterestsWidget({super.key});
+  final GlobalKey<ShakerState> shakeKey;
+  const InterestsWidget({super.key, required this.shakeKey});
 
   @override
   ConsumerState<InterestsWidget> createState() => _InterestsWidgetState();
@@ -70,7 +72,11 @@ class _InterestsWidgetState extends ConsumerState<InterestsWidget> {
           text: "Continue",
           textStyle: mediumStyle(16, AppColors.white),
           function: () {
-            setupController.saveInterests(context);
+            if (setupController.selectedInterests.length < 3) {
+              widget.shakeKey.currentState!.shake();
+            } else {
+              setupController.saveInterests(context);
+            }
           },
         ),
         const YMargin(20),
