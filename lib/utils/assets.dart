@@ -9,6 +9,14 @@ class ImageAssets {
   static const String nextellipse = "${AppConstants.imagePath}nextellipse.png";
   static const String check = "${AppConstants.imagePath}check.png";
   static const String setupimg = "${AppConstants.imagePath}setup_img.png";
+  static const String reviewsHomeTabImage =
+      "${AppConstants.imagePath}reviews_home_tab.png";
+  static const String placesHomeTabImage =
+      "${AppConstants.imagePath}places_home_tab.png";
+  static const String eventsHomeTabImage =
+      "${AppConstants.imagePath}events_home_tab.png";
+  static const String peopleHomeTabImage =
+      "${AppConstants.imagePath}people_home_tab.png";
 }
 
 class SvgAssets {
@@ -19,4 +27,14 @@ class SvgAssets {
   static const String google = "${AppConstants.svgPath}google.svg";
   static const String twitter = "${AppConstants.svgPath}twitter.svg";
   static const String facebook = "${AppConstants.svgPath}facebook.svg";
+
+  static const String home = "${AppConstants.svgPath}Home.svg";
+  static const String messages = "${AppConstants.svgPath}Messages.svg";
+  static const String profile = "${AppConstants.svgPath}Profile.svg";
+  static const String explore = "${AppConstants.svgPath}Explore.svg";
+  static const String socialCalendar =
+      "${AppConstants.svgPath}SocialCalendar.svg";
+
+  static const String notifications =
+      "${AppConstants.svgPath}notifications.svg";
 }

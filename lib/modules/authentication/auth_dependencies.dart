@@ -1,3 +1,4 @@
+import 'package:hightable_mobile_v2/core/application/repositories/preference_repositories.dart';
 import 'package:hightable_mobile_v2/modules/authentication/domain/usecases/customer_password_reset.dart';
 import 'package:hightable_mobile_v2/modules/authentication/domain/usecases/sendVerification.dart';
 import 'package:hightable_mobile_v2/modules/authentication/domain/usecases/update_customer_password.dart';
@@ -65,5 +66,8 @@ void registerAutDependencies() {
     () => GetUser(
       locator(),
     ),
+  );
+  locator.registerLazySingleton<PreferenceRepository>(
+    () => PreferenceRepository(),
   );
 }

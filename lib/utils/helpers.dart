@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hightable_mobile_v2/utils/constants.dart';
 
 import 'ui/ui_helpers.dart';
 

@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hightable_mobile_v2/modules/authentication/domain/models/token.dart';
 
 // import '../../../../modules/authentication/domain/entities/user.dart';
-import '../../../../modules/authentication/domain/models/usermodel.dart';
 import '../../../../modules/onboarding/views/screens/onboarding.dart';
 import '../../../../utils/helpers.dart';
 import '../../../config/DI/di.dart';

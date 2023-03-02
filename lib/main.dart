@@ -103,6 +103,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.hightableTheme,
       initialRoute: SplashScreen.routeName,
       navigatorKey: navigatorKey,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

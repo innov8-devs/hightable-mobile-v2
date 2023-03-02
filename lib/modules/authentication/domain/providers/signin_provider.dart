@@ -1,26 +1,20 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hightable_mobile_v2/modules/accountsetup/views/acc_setup.dart';
 import 'package:hightable_mobile_v2/modules/authentication/domain/params/login_params.dart';
-import 'package:hightable_mobile_v2/modules/authentication/repositories/auth_repo_impl.dart';
+import 'package:hightable_mobile_v2/modules/home/views/screens/home_screen.dart';
 import 'package:hightable_mobile_v2/utils/custom_navigators.dart';
 import 'package:hightable_mobile_v2/utils/helpers.dart';
 
-import '../../../../core/application/domain/providers/application.dart';
 import '../../../../core/application/repositories/preference_repositories.dart';
-import '../../../../core/config/DI/di.dart';
 import '../../../../core/config/config.dart';
 import '../../../../core/service_exceptions/src/gql_exceptions.dart';
 import '../../../../core/services/remote/al_gql_client.dart';
 import '../../../../main.dart';
 import '../../../../utils/constants.dart';
-import '../../../../utils/ui/helpers/successpage.dart';
 import '../../../../utils/ui/ui_helpers.dart';
-import '../../views/screens/login_screen.dart';
 import '../models/auth_output.dart';
 import '../models/token.dart';
-import '../models/usermodel.dart';
 import '../usecases/login.dart';
 
 ChangeNotifierProvider<SignInProvider> signInProvider =
@@ -64,7 +58,7 @@ class SignInProvider extends ChangeNotifier {
       params,
     );
 
-    response.when(success: (Token data) async {
+    await response.when(success: (Token data) async {
       loading = false;
       _updateGQLConfig(
         AuthOutput(
@@ -84,13 +78,7 @@ class SignInProvider extends ChangeNotifier {
             .get<PreferenceRepository>()
             .put(AppConstants.email, params.email);
       }
-      AppNavigators.routeReplacefade(
-          context,
-          const SucessPage(
-              title: "Welcome Back",
-              btntxt: "Continue!",
-              disaibled: true,
-              route: AccountSetup()));
+      AppNavigators.routeReplacefade(context, const HomeScreen());
       requestState = true;
     }, failure: (error) {
       loading = false;

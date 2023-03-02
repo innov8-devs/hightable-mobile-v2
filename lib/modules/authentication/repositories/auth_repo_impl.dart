@@ -1,7 +1,6 @@
 import 'package:hightable_mobile_v2/modules/authentication/domain/usecases/sendVerification.dart';
 
-import '../../../../core/al_flutter_core.dart';
-import '../domain/entities/user.dart';
+import '../../../core/al_flutter_core.dart';
 import '../domain/models/token.dart';
 import '../domain/models/usermodel.dart';
 import '../domain/params/login_params.dart';
