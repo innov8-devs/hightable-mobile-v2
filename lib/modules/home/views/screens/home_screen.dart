@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hightable_mobile_v2/core/application/components/BottomNavigationBar.dart';
 import 'package:hightable_mobile_v2/modules/home/views/widgets/header.dart';
+import 'package:hightable_mobile_v2/modules/home/views/widgets/reviews.dart';
 import 'package:hightable_mobile_v2/utils/helpers.dart';
+
+ValueNotifier<String> currentTab = ValueNotifier("Reviews");
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "/";
@@ -9,9 +12,17 @@ class HomeScreen extends StatefulWidget {
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
+
+  static _HomeScreenState? of(BuildContext context) =>
+      context.findAncestorStateOfType<_HomeScreenState>();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Widget _currentTabWidget = const Reviews();
+
+  set currentTabWidget(Widget value) =>
+      setState(() => _currentTabWidget = value);
+
   @override
   void initState() {
     Helpers.logc("currentPage: ${HomeScreen.routeName}");
@@ -26,8 +37,9 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: const BottomNavBar(),
       body: SafeArea(
         child: Column(
-          children: const [
-            Header(),
+          children: [
+            const Header(),
+            _currentTabWidget,
           ],
         ),
       ),

@@ -17,3 +17,10 @@
 2023-03-02 14:33:01.781 +01:00 [WRN] No ConfigurationItems have been defined, configuration won't surface any configuration from the client!
 2023-03-02 14:33:01.801 +01:00 [DBG] Finished: Routing Notification initialized in 65ms
 2023-03-02 14:33:01.801 +01:00 [DBG] Finished: Processing notification initialized in 67ms
+2023-03-02 21:10:08.875 +01:00 [DBG] Finding descriptors for shutdown
+2023-03-02 21:10:11.864 +01:00 [DBG] Queueing "Serial":shutdown:1 request for processing
+2023-03-02 21:10:12.128 +01:00 [DBG] Starting: Processing request shutdown 1
+2023-03-02 21:10:12.188 +01:00 [DBG] Starting: Routing Request (1) shutdown
+2023-03-02 21:10:12.984 +01:00 [VRB] Converting params for Request (1) shutdown to OmniSharp.Extensions.LanguageServer.Protocol.Models.ShutdownParams
+2023-03-02 21:10:12.984 +01:00 [VRB] Converting params for Notification shutdown to OmniSharp.Extensions.LanguageServer.Protocol.Models.ShutdownParams
+2023-03-02 21:10:17.827 +01:00 [INF] --> Shutdown...
