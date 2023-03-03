@@ -9,6 +9,7 @@ class ImageAssets {
   static const String nextellipse = "${AppConstants.imagePath}nextellipse.png";
   static const String check = "${AppConstants.imagePath}check.png";
   static const String setupimg = "${AppConstants.imagePath}setup_img.png";
+
   static const String reviewsHomeTabImage =
       "${AppConstants.imagePath}reviews_home_tab.png";
   static const String placesHomeTabImage =
@@ -17,6 +18,12 @@ class ImageAssets {
       "${AppConstants.imagePath}events_home_tab.png";
   static const String peopleHomeTabImage =
       "${AppConstants.imagePath}people_home_tab.png";
+
+  static const disappointed = "${AppConstants.imagePath}disappointed.png";
+  static const neutral = "${AppConstants.imagePath}neutral.png";
+  static const smiling = "${AppConstants.imagePath}smiling.png";
+  static const smilingHeart = "${AppConstants.imagePath}smiling_heart.png";
+  static const unamused = "${AppConstants.imagePath}unamused.png";
 }
 
 class SvgAssets {
@@ -37,4 +44,13 @@ class SvgAssets {
 
   static const String notifications =
       "${AppConstants.svgPath}notifications.svg";
+
+  // Generic
+  static const String dotIcon = "${AppConstants.svgPath}dot.svg";
+  static const String homeRatingStarSVG =
+      "${AppConstants.svgPath}rating_star.svg";
+  static const String homeDisLikeSVG = "${AppConstants.svgPath}dislike.svg";
+  static const String homeLikeSVG = "${AppConstants.svgPath}like.svg";
+  static const homeCommentSVG = '${AppConstants.svgPath}/comment.svg';
+  static const homeShareSVG = '${AppConstants.svgPath}/share.svg';
 }

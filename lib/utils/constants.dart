@@ -4,6 +4,10 @@ class AppConstants {
   static const String isLoggedIn = "is_logged_in";
   static const String email = "email";
   static const String token = "token";
+  static const String sampleProfilePlaceHolder =
+      'https://cdn1.vectorstock.com/i/thumb-large/77/30/default-avatar-profile-icon-grey-photo-placeholder-vector-17317730.jpg';
+  static String sampleDanfoImage =
+      'https://media-cdn.tripadvisor.com/media/photo-s/1a/31/8a/b2/photo0jpg.jpg';
 
   ///[HiveBoxes].
   static const String boxOnBoarding = 'on_boarding_box';
