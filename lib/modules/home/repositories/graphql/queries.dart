@@ -144,3 +144,32 @@ String get queryReviews {
     }
     ''';
 }
+
+String get queryGetPeople {
+  return r'''
+    query RecommendPeople {
+      recommendUsers {
+        _id
+        email
+        username
+        firstName
+        lastName
+        about
+        address
+        profileImage
+        reviewCount
+        youFollow
+        followsYou
+        interests {
+          _id
+          name
+        }
+        followingCount
+        followerCount
+        meta {
+          createdAt
+        }
+      }
+    }
+''';
+}

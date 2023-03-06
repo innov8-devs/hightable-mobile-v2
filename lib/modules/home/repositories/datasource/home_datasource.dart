@@ -6,6 +6,7 @@ abstract class HomeDataSource {
   Future<List<Review>> getReviews();
   Future<List<Event>> getEvents();
   Future<List<Restaurant>> getPlaces();
+  Future<List<Restaurant>> getPeople();
   Future likeEvent(String params);
   Future unLikeEvent(String params);
   Future likeReviews(String params);

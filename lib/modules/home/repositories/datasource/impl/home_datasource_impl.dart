@@ -48,6 +48,14 @@ class HomeDataSourceImpl extends HomeDataSource {
   }
 
   @override
+  Future<List<Restaurant>> getPeople() async {
+    final response = await _algqlClient.gpQuery(
+      queryDocument: queryGetPeople,
+    );
+    return response.data?['recommendUsers'];
+  }
+
+  @override
   Future likeEvent(String params) async {
     final response = await _algqlClient.gpQuery(
       queryDocument: mutateLikeEvent,
