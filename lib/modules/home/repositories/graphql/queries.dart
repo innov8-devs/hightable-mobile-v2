@@ -103,7 +103,7 @@ String get queryReviews {
         _id,
         body,
         images,
-        user{
+        user {
           _id,
           email,
           username,

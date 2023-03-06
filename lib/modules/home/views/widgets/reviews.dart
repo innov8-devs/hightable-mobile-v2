@@ -8,19 +8,24 @@ class Reviews extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Consumer(
-        builder: (_, ref, child) {
-          final reviewController = ref.watch(reviewProvider);
-          reviewController.getReviews();
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              final review = reviewController.reviews[index];
-              return HomeReviewCard(review: review);
-            },
-            itemCount: reviewController.reviews.length,
-          );
-        },
+    return Expanded(
+      child: Container(
+        child: Consumer(
+          builder: (_, ref, child) {
+            final reviewController = ref.watch(reviewProvider);
+            reviewController.getReviews();
+            return ListView.separated(
+              itemBuilder: (context, index) {
+                final review = reviewController.reviews[index];
+                return HomeReviewCard(review: review);
+              },
+              separatorBuilder: (context, index) => const SizedBox(
+                height: 20.0,
+              ),
+              itemCount: reviewController.reviews.length,
+            );
+          },
+        ),
       ),
     );
   }

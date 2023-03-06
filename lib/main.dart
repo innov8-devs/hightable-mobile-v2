@@ -81,8 +81,8 @@ void main() async {
   runApp(
     GraphQLProvider(
       client: client,
-      child: const ProviderScope(
-        child: MyApp(),
+      child: ProviderScope(
+        child: MyApp(authOutput: authOutput),
       ),
     ),
   );
@@ -91,7 +91,8 @@ void main() async {
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, required this.authOutput});
+  final AuthOutput? authOutput;
 
   @override
   Widget build(BuildContext context) {

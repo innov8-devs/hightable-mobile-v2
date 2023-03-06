@@ -51,6 +51,6 @@ class SvgAssets {
       "${AppConstants.svgPath}rating_star.svg";
   static const String homeDisLikeSVG = "${AppConstants.svgPath}dislike.svg";
   static const String homeLikeSVG = "${AppConstants.svgPath}like.svg";
-  static const homeCommentSVG = '${AppConstants.svgPath}/comment.svg';
-  static const homeShareSVG = '${AppConstants.svgPath}/share.svg';
+  static const homeCommentSVG = '${AppConstants.svgPath}comment.svg';
+  static const homeShareSVG = '${AppConstants.svgPath}share.svg';
 }

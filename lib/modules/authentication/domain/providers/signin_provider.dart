@@ -95,7 +95,7 @@ class SignInProvider extends ChangeNotifier {
 
   void _updateGQLConfig(AuthOutput authOutput) {
     final GQLConfig gqlConfig = GQLConfig(
-      'https://hightable-gateway-staging.herokuapp.com/',
+      'https://gateway-dev.hightable.africa/',
       bearerToken: () async {
         final accessToken = authOutput.jwt;
 

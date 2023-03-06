@@ -1,6 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hightable_mobile_v2/core/db/user_db.dart';
 import 'package:hightable_mobile_v2/modules/authentication/domain/models/token.dart';
 
 // import '../../../../modules/authentication/domain/entities/user.dart';
@@ -13,8 +13,11 @@ ChangeNotifierProvider<Application> applicationController =
     ChangeNotifierProvider((ref) => Application(ref: ref));
 
 class Application extends ChangeNotifier {
-  Application({this.ref});
-  Token _data = Token();
+  Application({this.ref}) {
+    final userInstance = UserDb.getInstance();
+    _isLogged = userInstance?.accessToken != null ? true : false;
+  }
+  Token _data = const Token();
   String _token = "";
   Ref? ref;
   bool _isLogged = false;

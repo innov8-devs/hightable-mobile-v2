@@ -17,19 +17,17 @@ class ReviewProvider extends ChangeNotifier {
 
   List<Review> get reviews => _reviews;
 
-  Future<bool> getReviews() async {
+  Future<List<Review>> getReviews() async {
     bool requestStatus = false;
     final GetReviews getReviews = locator();
     final response = await getReviews(NoParams());
     response.when(success: (data) {
       _reviews = data;
       requestStatus = true;
-      notifyListeners();
     }, failure: (error) {
       requestStatus = false;
     });
-
-    return requestStatus;
+    return _reviews;
   }
 
   Future<bool> likeReview(String id) async {
