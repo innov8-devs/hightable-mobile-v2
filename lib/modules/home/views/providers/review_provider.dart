@@ -6,7 +6,7 @@ import 'package:hightable_mobile_v2/modules/home/domain/usecases/get_reviews.dar
 import 'package:hightable_mobile_v2/modules/home/domain/usecases/like_review.dart';
 import 'package:hightable_mobile_v2/modules/home/domain/usecases/unlike_review.dart';
 
-ChangeNotifierProvider<ReviewProvider> signInProvider =
+ChangeNotifierProvider<ReviewProvider> reviewProvider =
     ChangeNotifierProvider((ref) => ReviewProvider(ref: ref));
 
 class ReviewProvider extends ChangeNotifier {
@@ -24,6 +24,7 @@ class ReviewProvider extends ChangeNotifier {
     response.when(success: (data) {
       _reviews = data;
       requestStatus = true;
+      notifyListeners();
     }, failure: (error) {
       requestStatus = false;
     });
@@ -37,6 +38,7 @@ class ReviewProvider extends ChangeNotifier {
     final response = await likeReview(id);
     response.when(success: (data) {
       requestStatus = true;
+      notifyListeners();
     }, failure: (error) {
       requestStatus = false;
     });
@@ -50,6 +52,7 @@ class ReviewProvider extends ChangeNotifier {
     final response = await unlikeReview(id);
     response.when(success: (data) {
       requestStatus = true;
+      notifyListeners();
     }, failure: (error) {
       requestStatus = false;
     });
